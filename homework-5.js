@@ -1,17 +1,17 @@
 // 3. Создать функцию, которая принимает 2 параметра: город и температуру и выводит сообщение в консоль "Сейчас в X температура  — Y градусов по Цельсию"
 
-const forecast = (city, temperature) =>
+const getWeatherByCity = (city, temperature) =>
   console.log(
     `Сейчас в ${city} температура ${temperature} градусов по Цельсию`
   );
 
-// console.log(forecast("London", 38)); вызов
+getWeatherByCity("Винница", 38);
 
 // 4. Создать переменную, которая хранит внутри себя скорость звука (гуглим). Создать функцию, которая принимает 1 параметр - скорость, внутри функции происходит проверка: если переданная скорость выше скорости звука - выводим лог "Сверхзвуковая скорость", если ниже - "Дозвуковая скорость"
 
 const SOUND_SPEED = 343;
 
-function speedTest(speed) {
+function showSpeed(speed) {
   if (speed > SOUND_SPEED) {
     console.log("Сверхзвуковая скорость");
   } else if (speed < SOUND_SPEED) {
@@ -21,7 +21,7 @@ function speedTest(speed) {
   }
 }
 
-// speedTest(228);
+showSpeed(228);
 
 // 5. Создать переменную, которая содержит цену какого-нибудь продукта (на ваше усмотрение). Далее создаем функцию, которая принимает 1 параметр - текущий бюджет, внутри функции происходит проверка: если бюджет превышает цену товара - выводим лог "(ваше название товара) приобретён. Спасибо за покупку!", если нет - обсчитываем разницу и выводим лог "Вам не хватает X$, пополните баланс".
 
@@ -29,7 +29,7 @@ const productName = "Билет";
 const productPrice = 100;
 
 const purchaseProduct = (budget) => {
-  if (productPrice <= budget) {
+  if (budget >= productPrice) {
     console.log(`${productName} приобретен. Спасибо за покупку!`);
   } else {
     const shortage = productPrice - budget;
@@ -46,8 +46,8 @@ purchaseProduct(20);
 let homework, tests, finalProject;
 
 function calcAverageGrade(homework, tests, finalProject) {
-  let averageGrade = (homework + tests + finalProject) / 3;
+  let averageGrade = Math.round((homework + tests + finalProject) / 3);
   return averageGrade;
 }
 
-// console.log("Средняя оценка: " + Math.round(calcAverageGrade(25, 87, 99)));
+console.log("Средняя оценка: " + calcAverageGrade(25, 87, 99));
