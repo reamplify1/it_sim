@@ -115,6 +115,6 @@ function addIsRareProperty(arr) {
   });
 }
 
-isRare(movies);
+addIsRareProperty(movies);
 
 console.log(movies);
