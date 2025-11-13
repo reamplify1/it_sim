@@ -1,3 +1,5 @@
+import { comments } from "./comments.js"; // импорт комментариев
+
 // Уровень 1:
 
 // 2. Создать массив чисел от 1 до 10. Отфильтровать его таким образом, что бы мы получил массив чисел, начиная с 5.
@@ -25,8 +27,6 @@ console.log(reverseArray(movies));
 
 // уровень 2
 
-import { comments } from "./comments.js"; // импорт комментариев
-
 // 7. Вывести в консоль массив тех комментариев, почта пользователей которых содержит ".com"
 
 const commentsWithCom = comments.filter((comment) =>
@@ -37,26 +37,27 @@ console.log(commentsWithCom);
 
 // 8. Перебрать массив таким образом, что бы пользователи с id меньше или равно 5 имели postId: 2, а те, у кого id больше 5, имели postId: 1
 
-const commentsWithPostId = comments.map((comment) => {
-  return { ...comment, postId: comment.id <= 5 ? 2 : 1 };
-});
+const commentsWithPostId = comments.map((comment) => ({
+  ...comment,
+  postId: comment.id <= 5 ? 2 : 1,
+}));
 
 console.log(commentsWithPostId);
 
 // 9. Перебрать массив, что бы объекты состояли только из айди и имени
 
-const commentsIdAndName = comments.map((comment) => ({
+const commentsIdWithName = comments.map((comment) => ({
   id: comment.id,
   name: comment.name,
 }));
 
-console.log("9 task", commentsIdAndName);
+console.log("9 task", commentsIdWithName);
 
 // 10. Перебираем массив, добавляем объектам свойство isInvalid и проверяем: если длина тела сообщения (body) больше 180 символов - устанавливаем true, меньше - false.
 
 const commentsWithIsInvalid = comments.map((comment) => ({
   ...comment,
-  isInvalid: comment.body.length > 180 ? true : false,
+  isInvalid: comment.body.length > 180,
 }));
 
 console.log("task-10 :", commentsWithIsInvalid);
