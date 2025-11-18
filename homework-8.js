@@ -84,12 +84,16 @@ console.log(productsStr2);
 
 // 7*. Реализовать функцию, которая при старте нашей страницы выводит сообщение с текстом, мол "Сколько карточек отобразить? От 1 до 5" и в зависимости от результата - будет выводить это количество. Должна быть защита от введенных других значений (имеется ввиду проверка if)
 
-const numberOfProducts = prompt("Сколько карточек отобразить? От 1 до 5");
+let numberOfProducts = prompt("Сколько карточек отобразить? От 1 до 5");
 
 if (numberOfProducts === null) {
   alert("Вы ничего не ввели. Введите нужное число");
   location.reload();
-} else if (numberOfProducts.trim() === "") {
+}
+
+numberOfProducts = numberOfProducts.trim();
+
+if (numberOfProducts === "") {
   alert("Вы ввели пустоту. Введите нужное число");
   location.reload();
 } else if (isNaN(numberOfProducts)) {
@@ -116,7 +120,9 @@ products
     productClone.querySelector(".product-name").textContent = product.name;
     productClone.querySelector(".product-description").textContent =
       product.description;
-    productClone.querySelector(".product-price").innerHTML = `${product.price}&nbsp;₽`;
+    productClone.querySelector(
+      ".product-price"
+    ).innerHTML = `${product.price}&nbsp;₽`;
 
     const ul = productClone.querySelector(".product-compound");
 
