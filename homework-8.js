@@ -63,7 +63,7 @@ products.forEach((product) => {
   }
   cardContainer.appendChild(productClone);
 });
-// без состава - не смог его сделать
+
 // 5. Используя метод .reduce(), получить строку, которая состоит из названий продуктовых карточек, разделенных точкой с запятой
 
 const productsStr = products.reduce((acc, product) => {
