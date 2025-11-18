@@ -13,7 +13,7 @@ products.forEach((product) => {
   productClone.querySelector(".product-name").textContent = product.name;
   productClone.querySelector(".product-description").textContent =
     product.description;
-  productClone.querySelector(".product-price").textContent = product.price;
+  productClone.querySelector(".product-price").innerHTML = `${product.price}&nbsp;₽`;
 
   const ul = productClone.querySelector(".product-compound");
 
@@ -53,7 +53,10 @@ products.forEach((product) => {
           li.textContent = item;
           element.appendChild(li);
         });
-      } else {
+      } else if (key === 'price') {
+        element.innerHTML = `${product[key]}&nbsp;₽`
+      }
+      else{
         element.textContent = product[key];
       }
     }
@@ -113,7 +116,7 @@ products
     productClone.querySelector(".product-name").textContent = product.name;
     productClone.querySelector(".product-description").textContent =
       product.description;
-    productClone.querySelector(".product-price").textContent = product.price;
+    productClone.querySelector(".product-price").innerHTML = `${product.price}&nbsp;₽`;
 
     const ul = productClone.querySelector(".product-compound");
 
