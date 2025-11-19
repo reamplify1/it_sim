@@ -8,11 +8,9 @@ const productTemplate = document.querySelector(".product-template");
 products.forEach((product) => {
   const productClone = productTemplate.content.cloneNode(true);
   productClone.querySelector(".product-img").src = product.img;
-  productClone.querySelector(".product-category").textContent =
-    product.category;
+  productClone.querySelector(".product-category").textContent = product.category;
   productClone.querySelector(".product-name").textContent = product.name;
-  productClone.querySelector(".product-description").textContent =
-    product.description;
+  productClone.querySelector(".product-description").textContent = product.description;
   productClone.querySelector(".product-price").innerHTML = `${product.price}&nbsp;₽`;
 
   const ul = productClone.querySelector(".product-compound");
@@ -53,10 +51,9 @@ products.forEach((product) => {
           li.textContent = item;
           element.appendChild(li);
         });
-      } else if (key === 'price') {
-        element.innerHTML = `${product[key]}&nbsp;₽`
-      }
-      else{
+      } else if (key === "price") {
+        element.innerHTML = `${product[key]}&nbsp;₽`;
+      } else {
         element.textContent = product[key];
       }
     }
@@ -84,53 +81,54 @@ console.log(productsStr2);
 
 // 7*. Реализовать функцию, которая при старте нашей страницы выводит сообщение с текстом, мол "Сколько карточек отобразить? От 1 до 5" и в зависимости от результата - будет выводить это количество. Должна быть защита от введенных других значений (имеется ввиду проверка if)
 
-let numberOfProducts = prompt("Сколько карточек отобразить? От 1 до 5");
+function startApp() {
+  
+  let numberOfProducts = prompt("Сколько карточек отобразить? От 1 до 5");
 
-if (numberOfProducts === null) {
-  alert("Вы ничего не ввели. Введите нужное число");
-  location.reload();
-}
+  if (numberOfProducts === null) {
+    alert("Вы ничего не ввели. Введите нужное число");
+    location.reload();
+  }
 
-numberOfProducts = numberOfProducts.trim();
+  numberOfProducts = numberOfProducts.trim();
 
-if (numberOfProducts === "") {
-  alert("Вы ввели пустоту. Введите нужное число");
-  location.reload();
-} else if (isNaN(numberOfProducts)) {
-  alert("Введите число");
-  location.reload();
-} else if (numberOfProducts > products.length) {
-  alert("Вы ввели слишком большое число");
-  document.body.style.display = "none";
-  location.reload();
-}
+  if (numberOfProducts === "") {
+    alert("Вы ввели пустоту. Введите нужное число");
+    location.reload();
+  } else if (isNaN(numberOfProducts)) {
+    alert("Введите число");
+    location.reload();
+  } else if (numberOfProducts > products.length) {
+    alert("Вы ввели слишком большое число");
+    document.body.style.display = "none";
+    location.reload();
+  }
 
-products
-  .reduce((acc, product, index) => {
-    if (index < numberOfProducts) {
-      acc.push(product);
-    }
-    return acc;
-  }, [])
-  .forEach((product) => {
-    const productClone = productTemplate.content.cloneNode(true);
-    productClone.querySelector(".product-img").src = product.img;
-    productClone.querySelector(".product-category").textContent =
-      product.category;
-    productClone.querySelector(".product-name").textContent = product.name;
-    productClone.querySelector(".product-description").textContent =
-      product.description;
-    productClone.querySelector(
-      ".product-price"
-    ).innerHTML = `${product.price}&nbsp;₽`;
+  products
+    .reduce((acc, product, index) => {
+      if (index < numberOfProducts) {
+        acc.push(product);
+      }
+      return acc;
+    }, [])
+    .forEach((product) => {
+      const productClone = productTemplate.content.cloneNode(true);
+      productClone.querySelector(".product-img").src = product.img;
+      productClone.querySelector(".product-category").textContent = product.category;
+      productClone.querySelector(".product-name").textContent = product.name;
+      productClone.querySelector(".product-description").textContent = product.description;
+      productClone.querySelector(".product-price").innerHTML = `${product.price}&nbsp;₽`;
 
-    const ul = productClone.querySelector(".product-compound");
+      const ul = productClone.querySelector(".product-compound");
 
-    product.ingredients.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      ul.appendChild(li);
+      product.ingredients.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+
+      cardContainer.appendChild(productClone);
     });
+}
 
-    cardContainer.appendChild(productClone);
-  });
+startApp();
