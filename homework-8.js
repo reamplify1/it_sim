@@ -5,32 +5,36 @@ import { products } from "./data/product-cards.js";
 const cardContainer = document.querySelector(".card-container");
 const productTemplate = document.querySelector(".product-template");
 
-const renderProducts = function(products) {
+const renderProducts = function (products) {
+  products.forEach((product) => {
+    const productClone = productTemplate.content.cloneNode(true);
+    productClone.querySelector(".product-img").src = product.img;
+    productClone.querySelector(".product-category").textContent = product.category;
+    productClone.querySelector(".product-name").textContent = product.name;
+    productClone.querySelector(".product-description").textContent = product.description;
+    productClone.querySelector(".product-price").innerHTML = `${product.price}&nbsp;₽`;
 
-products.forEach((product) => {
-  const productClone = productTemplate.content.cloneNode(true);
-  productClone.querySelector(".product-img").src = product.img;
-  productClone.querySelector(".product-category").textContent = product.category;
-  productClone.querySelector(".product-name").textContent = product.name;
-  productClone.querySelector(".product-description").textContent = product.description;
-  productClone.querySelector(".product-price").innerHTML = `${product.price}&nbsp;₽`;
+    const ul = productClone.querySelector(".product-compound");
 
-  const ul = productClone.querySelector(".product-compound");
+    product.ingredients.forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      ul.appendChild(li);
+    });
 
-  product.ingredients.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    ul.appendChild(li);
+    cardContainer.appendChild(productClone);
   });
-
-  cardContainer.appendChild(productClone);
-});
-}
+};
 
 
-const renderProducts2 = function(products){
-products.forEach((product) => {
-  const cardHTML = `
+const renderProducts2 = function (products) {
+  products.forEach((product) => {
+
+    const ingredientsHTML = product.ingredients.map(ingredient => {
+      return `<li>${ingredient}</li>`
+    }).join("");
+
+    const cardHTML = `
     <div class="product-card">
       <img class="product-img" src="${product.img}" alt="${product.name}" />
 
@@ -39,7 +43,8 @@ products.forEach((product) => {
       <h3 class="product-name">${product.name}</h3>
 
       <p class="product-description">${product.description}</p>
-
+      <span>Состав:</span>
+      <ul class="product-compound">${ingredientsHTML}</ul>
       <div class="product-price-container">
         <span class="product-price-label">Цена</span>
         <span class="product-price">${product.price}&nbsp;₽</span>
@@ -47,53 +52,48 @@ products.forEach((product) => {
     </div>
   `;
 
-  cardContainer.insertAdjacentHTML("beforeend", cardHTML);
-});
-}
-
+    cardContainer.insertAdjacentHTML("beforeend", cardHTML);
+  });
+};
 
 // 4*. Подумать, как можно оптимизировать дублирование querySelector, textContent и прочего, о чем говорилось на лекции. 1 вариант - маппинг, 2 вариант - использование data-атрибутов - хз
 
+function renderProducts3(products) {
+  const productMap = {
+    img: ".product-img",
+    category: ".product-category",
+    name: ".product-name",
+    description: ".product-description",
+    price: ".product-price",
+    ingredients: ".product-compound",
+  };
 
-function renderProducts3(products){
+  products.forEach((product) => {
+    const productClone = productTemplate.content.cloneNode(true);
 
-const productMap = {
-  img: ".product-img",
-  category: ".product-category",
-  name: ".product-name",
-  description: ".product-description",
-  price: ".product-price",
-  ingredients: ".product-compound",
-};
+    for (let key in productMap) {
+      const selector = productMap[key];
+      const element = productClone.querySelector(selector);
 
-products.forEach((product) => {
-  const productClone = productTemplate.content.cloneNode(true);
-
-  for (let key in productMap) {
-    const selector = productMap[key];
-    const element = productClone.querySelector(selector);
-
-    if (element) {
-      if (key === "img") {
-        element.src = product[key];
-      } else if (key === "ingredients") {
-        product[key].forEach((item) => {
-          const li = document.createElement("li");
-          li.textContent = item;
-          element.appendChild(li);
-        });
-      } else if (key === "price") {
-        element.innerHTML = `${product[key]}&nbsp;₽`;
-      } else {
-        element.textContent = product[key];
+      if (element) {
+        if (key === "img") {
+          element.src = product[key];
+        } else if (key === "ingredients") {
+          product[key].forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            element.appendChild(li);
+          });
+        } else if (key === "price") {
+          element.innerHTML = `${product[key]}&nbsp;₽`;
+        } else {
+          element.textContent = product[key];
+        }
       }
     }
-  }
-  cardContainer.appendChild(productClone);
-});
+    cardContainer.appendChild(productClone);
+  });
 }
-
-
 
 // 5. Используя метод .reduce(), получить строку, которая состоит из названий продуктовых карточек, разделенных точкой с запятой
 
@@ -116,7 +116,6 @@ console.log(productsStr2);
 // 7*. Реализовать функцию, которая при старте нашей страницы выводит сообщение с текстом, мол "Сколько карточек отобразить? От 1 до 5" и в зависимости от результата - будет выводить это количество. Должна быть защита от введенных других значений (имеется ввиду проверка if)
 
 function startApp() {
-  
   let numberOfProducts = prompt("Сколько карточек отобразить? От 1 до 5");
 
   if (numberOfProducts === null) {
