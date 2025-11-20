@@ -26,13 +26,13 @@ const renderProducts = function (products) {
   });
 };
 
-
 const renderProducts2 = function (products) {
   products.forEach((product) => {
-
-    const ingredientsHTML = product.ingredients.map(ingredient => {
-      return `<li>${ingredient}</li>`
-    }).join("");
+    const ingredientsHTML = product.ingredients
+      .map((ingredient) => {
+        return `<li>${ingredient}</li>`;
+      })
+      .join("");
 
     const cardHTML = `
     <div class="product-card">
