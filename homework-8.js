@@ -131,8 +131,8 @@ function startApp() {
   } else if (isNaN(numberOfProducts)) {
     alert("Введите число");
     location.reload();
-  } else if (numberOfProducts > products.length) {
-    alert("Вы ввели слишком большое число");
+  } else if (numberOfProducts > products.length || numberOfProducts < 0) {
+    alert("Вы ввели слишком неподходящее число");
     document.body.style.display = "none";
     location.reload();
   }
