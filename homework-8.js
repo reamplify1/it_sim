@@ -5,6 +5,8 @@ import { products } from "./data/product-cards.js";
 const cardContainer = document.querySelector(".card-container");
 const productTemplate = document.querySelector(".product-template");
 
+const renderProducts = function(products) {
+
 products.forEach((product) => {
   const productClone = productTemplate.content.cloneNode(true);
   productClone.querySelector(".product-img").src = product.img;
@@ -23,8 +25,37 @@ products.forEach((product) => {
 
   cardContainer.appendChild(productClone);
 });
+}
+
+
+const renderProducts2 = function(products){
+products.forEach((product) => {
+  const cardHTML = `
+    <div class="product-card">
+      <img class="product-img" src="${product.img}" alt="${product.name}" />
+
+      <span class="product-category">${product.category}</span>
+
+      <h3 class="product-name">${product.name}</h3>
+
+      <p class="product-description">${product.description}</p>
+
+      <div class="product-price-container">
+        <span class="product-price-label">Цена</span>
+        <span class="product-price">${product.price}&nbsp;₽</span>
+      </div>
+    </div>
+  `;
+
+  cardContainer.insertAdjacentHTML("beforeend", cardHTML);
+});
+}
+
 
 // 4*. Подумать, как можно оптимизировать дублирование querySelector, textContent и прочего, о чем говорилось на лекции. 1 вариант - маппинг, 2 вариант - использование data-атрибутов - хз
+
+
+function renderProducts3(products){
 
 const productMap = {
   img: ".product-img",
@@ -60,6 +91,9 @@ products.forEach((product) => {
   }
   cardContainer.appendChild(productClone);
 });
+}
+
+
 
 // 5. Используя метод .reduce(), получить строку, которая состоит из названий продуктовых карточек, разделенных точкой с запятой
 
