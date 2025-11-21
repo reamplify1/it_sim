@@ -5,10 +5,12 @@ import { products } from "./data/product-cards.js";
 const cardContainer = document.querySelector(".card-container");
 const productTemplate = document.querySelector(".product-template");
 
-const renderProducts = function (products) {
-  products.forEach((product) => {
+
+function renderProducts(array) {
+  array.forEach((product) => {
+    
     const productClone = productTemplate.content.cloneNode(true);
-    productClone.querySelector(".product-img").src = product.img;
+    productClone.querySelector(".product-img").src = `img/product-cards/${product.img}`;
     productClone.querySelector(".product-category").textContent = product.category;
     productClone.querySelector(".product-name").textContent = product.name;
     productClone.querySelector(".product-description").textContent = product.description;
@@ -24,9 +26,10 @@ const renderProducts = function (products) {
 
     cardContainer.appendChild(productClone);
   });
-};
+}
 
-const renderProducts2 = function (products) {
+
+function renderProducts2 (products) {
   products.forEach((product) => {
     const ingredientsHTML = product.ingredients
       .map((ingredient) => {
@@ -34,9 +37,11 @@ const renderProducts2 = function (products) {
       })
       .join("");
 
+    const imgPath = `img/product-cards/${product.img}`
+
     const cardHTML = `
     <div class="product-card">
-      <img class="product-img" src="${product.img}" alt="${product.name}" />
+      <img class="product-img" src="${imgPath}" alt="${product.name}" />
 
       <span class="product-category">${product.category}</span>
 
@@ -74,10 +79,11 @@ function renderProducts3(products) {
     for (let key in productMap) {
       const selector = productMap[key];
       const element = productClone.querySelector(selector);
+      const imgPath = `img/product-cards/${product.img}`
 
       if (element) {
         if (key === "img") {
-          element.src = product[key];
+          element.src = imgPath;
         } else if (key === "ingredients") {
           product[key].forEach((item) => {
             const li = document.createElement("li");
@@ -137,31 +143,9 @@ function startApp() {
     location.reload();
   }
 
-  products
-    .reduce((acc, product, index) => {
-      if (index < numberOfProducts) {
-        acc.push(product);
-      }
-      return acc;
-    }, [])
-    .forEach((product) => {
-      const productClone = productTemplate.content.cloneNode(true);
-      productClone.querySelector(".product-img").src = product.img;
-      productClone.querySelector(".product-category").textContent = product.category;
-      productClone.querySelector(".product-name").textContent = product.name;
-      productClone.querySelector(".product-description").textContent = product.description;
-      productClone.querySelector(".product-price").innerHTML = `${product.price}&nbsp;₽`;
+  const productsToRender = products.slice(0, numberOfProducts)
+  renderProducts(productsToRender);
 
-      const ul = productClone.querySelector(".product-compound");
-
-      product.ingredients.forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        ul.appendChild(li);
-      });
-
-      cardContainer.appendChild(productClone);
-    });
 }
 
 startApp();
