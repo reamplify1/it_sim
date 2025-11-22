@@ -28,7 +28,6 @@ function renderProducts(array) {
   });
 }
 
-// renderProducts(products)
 
 
 function renderProducts2(products) {
@@ -140,7 +139,7 @@ function startApp() {
     alert("Введите число");
     location.reload();
   } else if (numberOfProducts > products.length || numberOfProducts < 0) {
-    alert("Вы ввели слишком неподходящее число");
+    alert("Вы ввели неподходящее число");
     document.body.style.display = "none";
     location.reload();
   }
