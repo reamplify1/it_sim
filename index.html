@@ -4,7 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="homework-7.js" defer></script>
+    <link rel="stylesheet" href="/css/index.css" />
+    <script type="module" src="homework-8.js" defer></script>
   </head>
-  <body></body>
+
+  <body>
+    <main class="main">
+      <h1 class="title">Выбери свой продукт</h1>
+      <img class="background-image" src="../img/bg-flowers.png" />
+      <div class="cards-wrapper">
+        <div class="card-container"></div>
+      </div>
+
+      <template class="product-template">
+        <div class="product-card">
+          <img class="product-img" src="" alt="" />
+          <span class="product-category"></span>
+          <h3 class="product-name"></h3>
+          <p class="product-description"></p>
+          <span>Состав:</span>
+          <ul class="product-compound"></ul>
+          <div class="product-price-container">
+            <span class="product-price-label">Цена</span>
+            <span class="product-price">&nbsp;₽</span>
+          </div>
+        </div>
+      </template>
+    </main>
+  </body>
 </html>
