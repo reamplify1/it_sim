@@ -28,7 +28,7 @@ function renderProducts(array) {
   });
 }
 
-renderProducts(products)
+// renderProducts(products)
 
 
 function renderProducts2(products) {
@@ -150,4 +150,4 @@ function startApp() {
 
 }
 
-// startApp();
+startApp();
