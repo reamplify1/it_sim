@@ -10,7 +10,7 @@ function renderProducts(array) {
   array.forEach((product) => {
     
     const productClone = productTemplate.content.cloneNode(true);
-    productClone.querySelector(".product-img").src = `img/product-cards/${product.img}`;
+    productClone.querySelector(".product-img").src = `img/product-cards/${product.imageName}.png`;
     productClone.querySelector(".product-category").textContent = product.category;
     productClone.querySelector(".product-name").textContent = product.name;
     productClone.querySelector(".product-description").textContent = product.description;
@@ -28,8 +28,10 @@ function renderProducts(array) {
   });
 }
 
+renderProducts(products)
 
-function renderProducts2 (products) {
+
+function renderProducts2(products) {
   products.forEach((product) => {
     const ingredientsHTML = product.ingredients
       .map((ingredient) => {
@@ -37,7 +39,7 @@ function renderProducts2 (products) {
       })
       .join("");
 
-    const imgPath = `img/product-cards/${product.img}`
+    const imgPath = `img/product-cards/${product.imageName}.png`
 
     const cardHTML = `
     <div class="product-card">
@@ -65,7 +67,7 @@ function renderProducts2 (products) {
 
 function renderProducts3(products) {
   const productMap = {
-    img: ".product-img",
+    imageName: ".product-img",
     category: ".product-category",
     name: ".product-name",
     description: ".product-description",
@@ -79,10 +81,10 @@ function renderProducts3(products) {
     for (let key in productMap) {
       const selector = productMap[key];
       const element = productClone.querySelector(selector);
-      const imgPath = `img/product-cards/${product.img}`
+      const imgPath = `img/product-cards/${product.img}.png`
 
       if (element) {
-        if (key === "img") {
+        if (key === "imageName") {
           element.src = imgPath;
         } else if (key === "ingredients") {
           product[key].forEach((item) => {
@@ -148,4 +150,4 @@ function startApp() {
 
 }
 
-startApp();
+// startApp();
