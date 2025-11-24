@@ -28,7 +28,7 @@ function renderProducts(array) {
   });
 }
 
-renderProducts(products)
+// renderProducts(products)
 
 function renderProducts2(products) {
   products.forEach((product) => {
@@ -149,4 +149,4 @@ function startApp() {
 
 }
 
-// startApp();
+startApp();
