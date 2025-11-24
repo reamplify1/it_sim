@@ -30,7 +30,7 @@ registerForm.addEventListener("submit", (e) => {
   const data = showDataInConsoleLog(e);
   data.createdOn = new Date();
 
-  if (data.user_password !== data.user_repeat_password) {
+  if (data['user-password'] !== data['user-repeat-password']) {
     console.log("Пароли не совпадают");
     registerLabels[4].textContent = "Пароли не совпадают";
     registerLabels[4].style.color = "red";
@@ -52,7 +52,7 @@ registerForm.addEventListener("submit", (e) => {
 
 formModal.addEventListener('submit', (e) => {
   const authorizedUser = showDataInConsoleLog(e);
-  if(registeredUser.user_name !== authorizedUser.user_name || registeredUser.user_password !== authorizedUser.user_password) {
+  if(registeredUser['user-name'] !== authorizedUser['user-name'] || registeredUser['user-password'] !== authorizedUser['user-password)']) {
     modalFormError[0].textContent = 'Неверные данные';
     modalFormError[1].textContent = 'Попробуйте еще раз';
     modalFormError[0].style = 'color: red';
@@ -63,10 +63,11 @@ formModal.addEventListener('submit', (e) => {
     modalFormError[0].style.color = '';
     modalFormError[1].style.color = ''
   }
-  if(registeredUser.user_name === authorizedUser.user_name & registeredUser.user_password === authorizedUser.user_password){
+  if(registeredUser['user-name'] === authorizedUser['user-name'] & registeredUser['user-password'] === authorizedUser['user-password']){
     closeModal()
     let currentUser = {...registeredUser, lastLogin: new Date()}
     console.log("Current user info: ", currentUser);
+    
   }
 })
 

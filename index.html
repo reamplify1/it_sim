@@ -42,17 +42,17 @@
     <form action="" id="register-form">
       <h2 class="form-register__text">Регистрация нового пользователя</h2>
       <label class="register-form__label" for="user-name">Имя пользователя</label>
-      <input class="user-name" name="user_name" type="text" placeholder="Имя" required />
+      <input class="user-name" name="user-name" type="text" placeholder="Имя" required />
       <label class="register-form__label" for="user-surname">Фамилия пользователя</label>
-      <input class="user-surname" name="user_surname" type="text" placeholder="Фамилия" required />
+      <input class="user-surname" name="user-surname" type="text" placeholder="Фамилия" required />
       <label class="register-form__label" for="user-email">Ваша e-mail почта</label>
-      <input class="user-email" name="user_email" type="email" placeholder="e-mail" required />
+      <input class="user-email" name="user-email" type="email" placeholder="e-mail" required />
       <label class="register-form__label" for="user-year">Год рождения</label>
-      <input class="user-year" name="user_year" type="number" placeholder="Год рождения" required />
+      <input class="user-year" name="user-year" type="number" placeholder="Год рождения" required />
       <label class="register-form__label" for="user-password">Придумайте пароль</label>
-      <input class="user-password" name="user_password" type="password" placeholder="Пароль" required minlength="6" />
-      <label class="register-form__label" for="user-repeat_password">Повторите пароль</label>
-      <input class="user-repeat_password" name="user_repeat_password" type="password" placeholder="Повторите пароль"
+      <input class="user-password" name="user-password" type="password" placeholder="Пароль" required minlength="6" />
+      <label class="register-form__label" for="user-repeat-password">Повторите пароль</label>
+      <input class="user-repeat_password" name="user-repeat-password" type="password" placeholder="Повторите пароль"
         required minlength="6" />
       <button class="register__form--button" type="submit">Продолжить</button>
     </form>
@@ -66,16 +66,15 @@
         <div class="modal__body">
           <form class="form__modal" action="">
             <div class="container__modal-error">
-              <label class="form__modal--label" for="user_name">Введите имя пользователя</label>
+              <label class="form__modal--label" for="user-name">Введите имя пользователя</label>
               <p class="modal__form--error"></p>
-              <input class="form__modal--input" type="text" name="user_name" placeholder="Имя" required />
+              <input class="form__modal--input" type="text" name="user-name" placeholder="Имя" required />
             </div>
             <div class="container__modal-error">
-              <label class="form__modal--label" for="user_password">Введите пароль</label>
+              <label class="form__modal--label" for="user-password">Введите пароль</label>
               <p class="modal__form--error"></p>
-              <input class="form__modal--input" type="password" name="user_password" placeholder="Пароль" required />
+              <input class="form__modal--input" type="password" name="user-password" placeholder="Пароль" required />
             </div>
-
             <button class="modal__button">Войти</button>
           </form>
         </div>
