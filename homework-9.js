@@ -58,6 +58,11 @@ formModal.addEventListener('submit', (e) => {
     modalFormError[0].style.color = '';
     modalFormError[1].style.color = ''
   }
+  if(registeredUser.user_name === authorizedUser.user_name & registeredUser.user_password === authorizedUser.user_password){
+    closeModal()
+    let currentUser = {...registeredUser, lastLogin: new Date()}
+    console.log(currentUser);
+  }
 })
 
 modal.addEventListener('click', (e) => {
