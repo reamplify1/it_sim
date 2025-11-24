@@ -37,6 +37,11 @@ registerForm.addEventListener("submit", (e) => {
     registerLabels[5].textContent = "Пароли не совпадают";
     registerLabels[5].style.color = "red";
     return; 
+  } else {
+      registerLabels[4].style.color = "";
+      registerLabels[5].style.color = "";
+      registerLabels[4].textContent = "Введите пароль";
+      registerLabels[5].textContent = "Повторите пароль";
   }
 
   registeredUser = data;
@@ -61,7 +66,7 @@ formModal.addEventListener('submit', (e) => {
   if(registeredUser.user_name === authorizedUser.user_name & registeredUser.user_password === authorizedUser.user_password){
     closeModal()
     let currentUser = {...registeredUser, lastLogin: new Date()}
-    console.log(currentUser);
+    console.log("Current user info: ", currentUser);
   }
 })
 
