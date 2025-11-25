@@ -6,8 +6,6 @@
   font-size: 13px;
   line-height: 18px;
   color: var(--text-color);
-  /* cursor: default; 
-  user-select: auto; */
 }
 
 :root {
@@ -126,13 +124,13 @@
   padding-bottom: 0px;
 }
 
-.footer__product-cards--title {
+.footer__product-cards-title {
   font-weight: 800;
   font-size: 28px;
   line-height: 154%;
 }
 
-.footer__product--cards--text {
+.footer__product-cards-text {
   display: block;
   margin-top: 20px;
   font-weight: 400;
@@ -140,7 +138,7 @@
   line-height: 154%;
 }
 
-.footer__product-cards--logos {
+.footer__product-cards-icons {
   display: flex;
   flex-direction: row;
   margin-top: 30px;
@@ -160,7 +158,7 @@
     }
   }
 
-  .footer__form--text {
+  .footer__form-text {
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -179,7 +177,7 @@
     height: 61px;
   }
 
-  #footer--input {
+  #footer-input {
     width: 60%;
     border: none;
     outline: none;
@@ -188,7 +186,7 @@
     color: #000000;
   }
 
-  #email__form {
+  .footer-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -200,7 +198,7 @@
     height: 100%;
   }
 
-  .footer__form--input--button {
+  .footer__form-input-button {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -216,13 +214,12 @@
     color: #000000;
   }
 
-  .footer__form--input--button::before {
+  .footer__form-input-button::before {
     position: absolute;
     content: "";
     display: block;
     left: -21px;
     top: 0;
-    /* right: 10; */
     width: 1px;
     height: 100%;
     background-color: #000000;
@@ -240,7 +237,7 @@
     margin-bottom: 6px;
   }
 
-  .footer__links__options {
+  .footer__links-options {
     font-size: 18px;
     font-weight: 400;
   }
@@ -255,7 +252,7 @@
   padding-top: 239px;
 }
 
-.footer__website--text {
+.footer__website-text {
   display: flex;
   position: relative;
   justify-content: center;
@@ -269,7 +266,7 @@
   font-size: 18px;
 }
 
-.footer__website--text::before {
+.footer__website-text::before {
   content: "";
   display: inline-block;
   position: absolute;
@@ -313,10 +310,9 @@
   margin-bottom: 10px;
 }
 
-#register-form input {
+.register-form-input  {
   border: 1px solid #4f4f4f;
   border-radius: 7px;
-
   padding: 10px;
   margin: 3px auto;
   width: 100%;
@@ -328,7 +324,7 @@
   font-weight: 500;
 }
 
-.register__form--button {
+.register-form__button {
   margin-top: 10px;
   padding: 12px 25px;
   font-size: 16px;
@@ -423,12 +419,12 @@
   gap: 30px;
 }
 
-.form__modal--label {
+.form__modal-label {
   color: #000;
   font-size: 18px;
 }
 
-.form__modal--input {
+.form__modal-input {
   margin-top: 10px;
   width: 100%;
   padding: 6px 6px;
@@ -440,17 +436,17 @@
   outline: none;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
-.form__modal--input:focus {
+.form__modal-input:focus {
   border-color: #4a90e2;
 }
 
-.container__modal-error {
+.modal__error-container {
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
 }
 
-.modal__form--error{
+.modal__form-error{
   color: red;
   font-size: 14px;
   min-height: 18px;

@@ -28,7 +28,6 @@ function renderProducts(array) {
   });
 }
 
-// renderProducts(products)
 
 function renderProducts2(products) {
   products.forEach((product) => {

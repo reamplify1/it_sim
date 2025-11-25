@@ -24,7 +24,7 @@
 
     <template class="product-template">
       <div class="product-card">
-        <img class="product-img" src="" alt="" />
+        <img class="product-img" src="" alt="продукт для кожи" />
         <span class="product-category"></span>
         <h3 class="product-name"></h3>
         <p class="product-description"></p>
@@ -39,22 +39,22 @@
   </main>
 
   <div class="form-wrapper">
-    <form action="" id="register-form">
+    <form id="register-form">
       <h2 class="form-register__text">Регистрация нового пользователя</h2>
       <label class="register-form__label" for="user-name">Имя пользователя</label>
-      <input class="user-name" name="user-name" type="text" placeholder="Имя" required />
+      <input class="register-form-input user-name" name="user-name" type="text" placeholder="Имя" required />
       <label class="register-form__label" for="user-surname">Фамилия пользователя</label>
-      <input class="user-surname" name="user-surname" type="text" placeholder="Фамилия" required />
+      <input class="register-form-input user-surname" name="user-surname" type="text" placeholder="Фамилия" required />
       <label class="register-form__label" for="user-email">Ваша e-mail почта</label>
-      <input class="user-email" name="user-email" type="email" placeholder="e-mail" required />
+      <input class="register-form-input user-email" name="user-email" type="email" placeholder="e-mail" required />
       <label class="register-form__label" for="user-year">Год рождения</label>
-      <input class="user-year" name="user-year" type="number" placeholder="Год рождения" required />
+      <input class="register-form-input user-year" name="user-year" type="number" placeholder="Год рождения" required />
       <label class="register-form__label" for="user-password">Придумайте пароль</label>
-      <input class="user-password" name="user-password" type="password" placeholder="Пароль" required minlength="6" />
+      <input class="register-form-input user-password" name="user-password" type="password" placeholder="Пароль" required minlength="6" />
       <label class="register-form__label" for="user-repeat-password">Повторите пароль</label>
-      <input class="user-repeat_password" name="user-repeat-password" type="password" placeholder="Повторите пароль"
+      <input class="register-form-input user-repeat-password" name="user-repeat-password" type="password" placeholder="Повторите пароль"
         required minlength="6" />
-      <button class="register__form--button" type="submit">Продолжить</button>
+      <button class="register-form__button" type="submit">Продолжить</button>
     </form>
   </div>
 
@@ -65,17 +65,17 @@
         <button class="modal__close">&times;</button>
         <div class="modal__body">
           <form class="form__modal" action="">
-            <div class="container__modal-error">
-              <label class="form__modal--label" for="user-name">Введите имя пользователя</label>
-              <p class="modal__form--error"></p>
-              <input class="form__modal--input" type="text" name="user-name" placeholder="Имя" required />
+            <div class="modal__error-container">
+              <label class="form__modal-label" for="user-name">Введите имя пользователя</label>
+              <p class="modal__form-error"></p>
+              <input class="form__modal-input" type="text" name="user-name" placeholder="Имя" required />
             </div>
-            <div class="container__modal-error">
-              <label class="form__modal--label" for="user-password">Введите пароль</label>
-              <p class="modal__form--error"></p>
-              <input class="form__modal--input" type="password" name="user-password" placeholder="Пароль" required />
+            <div class="modal__error-container">
+              <label class="form__modal-label" for="user-password">Введите пароль</label>
+              <p class="modal__form-error"></p>
+              <input class="form__modal-input" type="password" name="user-password" placeholder="Пароль" required />
             </div>
-            <button class="modal__button">Войти</button>
+            <button class="modal__button">Аутентификация</button>
           </form>
         </div>
       </div>
@@ -85,19 +85,23 @@
   <footer>
     <div class="footer">
       <div class="footer__product-cards">
-        <h2 class="footer__product-cards--title">Product Cards</h2>
-        <p class="footer__product--cards--text">У Нас Самые Лучшие Продукты Для Кожи!</p>
-        <div class="footer__product-cards--logos">
-          <div><img src="/img/footer/footer-telegram-logo.svg" alt="" /></div>
-          <div><img src="/img/footer/footer-vk-logo.svg" alt="" /></div>
+        <h2 class="footer__product-cards-title">Product Cards</h2>
+        <p class="footer__product-cards-text">У Нас Самые Лучшие Продукты Для Кожи!</p>
+        <div class="footer__product-cards-icons">
+          <div>
+            <img src="/img/tg-icon.svg" alt="telegram icon" />
+          </div>
+          <div>
+            <img src="/img/vk-icon.svg" alt="vk icon" />
+          </div>
         </div>
       </div>
       <div class="footer__form">
-        <p class="footer__form--text">Подпишись на наши акции:</p>
+        <p class="footer__form-text">Подпишись на наши акции:</p>
         <div class="footer__form--input">
-          <form action="" id="email__form">
-            <input type="text" id="footer--input" name="email" placeholder="Введите e-mail..." required />
-            <button type="submit" class="footer__form--input--button">Подписаться</button>
+          <form id="footer-form">
+            <input type="text" id="footer-input" name="email" placeholder="Введите e-mail..." required />
+            <button type="submit" class="footer__form-input-button">Подписаться</button>
           </form>
         </div>
         <div class="footer__website">
@@ -105,10 +109,10 @@
         </div>
       </div>
       <nav class="footer__links">
-        <p class="footer__links--text">Быстрые ссылки</p>
-        <span class="footer__links__options">Главная</span>
-        <span class="footer__links__options">Магазин</span>
-        <span class="footer__links__options">Контакты</span>
+        <p class="footer__links-text">Быстрые ссылки</p>
+        <span class="footer__links-options">Главная</span>
+        <span class="footer__links-options">Магазин</span>
+        <span class="footer__links-options">Контакты</span>
       </nav>
     </div>
   </footer>
