@@ -41,14 +41,14 @@
   <div class="form-wrapper">
     <form id="register-form">
       <h2 class="form-register__text">Регистрация нового пользователя</h2>
-      <label class="register-form__label" for="user-name">Имя пользователя</label>
-      <input class="register-form-input user-name" name="user-name" type="text" placeholder="Имя" required />
-      <label class="register-form__label" for="user-surname">Фамилия пользователя</label>
-      <input class="register-form-input user-surname" name="user-surname" type="text" placeholder="Фамилия" required />
-      <label class="register-form__label" for="user-email">Ваша e-mail почта</label>
-      <input class="register-form-input user-email" name="user-email" type="email" placeholder="e-mail" required />
+      <label class="register-form__label" for="user-name">Имя</label>
+      <input class="register-form-input user-name" name="user-name" type="text" placeholder="Введите имя" required />
+      <label class="register-form__label" for="user-surname">Фамилия</label>
+      <input class="register-form-input user-surname" name="user-surname" type="text" placeholder="Введите фамилия" required />
+      <label class="register-form__label" for="user-email">e-mail адрес</label>
+      <input class="register-form-input user-email" name="user-email" type="email" placeholder="Введите e-mail" required />
       <label class="register-form__label" for="user-year">Год рождения</label>
-      <input class="register-form-input user-year" name="user-year" type="number" placeholder="Год рождения" required />
+      <input class="register-form-input user-year" name="user-year" type="number" placeholder="Введите год рождения" required />
       <label class="register-form__label" for="user-password">Придумайте пароль</label>
       <input class="register-form-input user-password" name="user-password" type="password" placeholder="Пароль" required minlength="6" />
       <label class="register-form__label" for="user-repeat-password">Повторите пароль</label>
@@ -75,7 +75,7 @@
               <p class="modal__form-error"></p>
               <input class="form__modal-input" type="password" name="user-password" placeholder="Пароль" required />
             </div>
-            <button class="modal__button">Аутентификация</button>
+            <button class="modal__button">Войти</button>
           </form>
         </div>
       </div>
