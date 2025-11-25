@@ -25,7 +25,7 @@ emailForm.addEventListener("submit", (e) => {
 
 function registerNewUser() {
   const registerForm = document.querySelector("#register-form");
-  const registerLabels = document.querySelectorAll(".register-form__label");
+  const registerLabels = document.querySelectorAll("#register-form label");
 
   registerForm.addEventListener("submit", (e) => {
     const data = showDataInConsoleLog(e);
@@ -64,7 +64,7 @@ registerNewUser();
 
 let currentUser = undefined;
 
-function modalUserAuthorized(registeredUser) {
+function modalUserAuthorized(registeredUser,) {
   const formModal = document.querySelector(".form__modal");
   const modalFormError = document.querySelectorAll(".modal__form-error");
   
@@ -78,6 +78,7 @@ function modalUserAuthorized(registeredUser) {
       modalFormError[1].textContent = "Попробуйте еще раз";
       modalFormError[0].style = "color: red";
       modalFormError[1].style = "color: red";
+      return;
     } else {
       modalFormError[0].textContent = "";
       modalFormError[1].textContent = "";
@@ -85,11 +86,11 @@ function modalUserAuthorized(registeredUser) {
       modalFormError[1].style.color = "";
     }
     if (
-      (registeredUser["user-name"] === authorizedUser["user-name"]) &
+      (registeredUser["user-name"] === authorizedUser["user-name"]) &&
       (registeredUser["user-password"] === authorizedUser["user-password"])
     ) {
       closeModal();
-      let currentUser = { ...registeredUser, lastLoginTime: new Date() };
+      currentUser = { ...registeredUser, lastLoginTime: new Date() };
       console.log("Current user info: ", currentUser);
     }
   });
