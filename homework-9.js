@@ -1,6 +1,3 @@
-// 4. К Форме, которая прикреплена в футере - добавить логику:
-// email должен соответствовать стандартам (добавить валидацию), если он не заполнен - форма не отправляется. Кнопка "Подписаться" и есть "отправкой формы", при нажатии на которую мы будем выводить консоль лог в виде объекта:  { email: 'введенная почта' }
-
 // Отдельная функция для отображения в консоль логе пришедших данных после отправки формы. Используется в футере, форме регистрации, а так же в модальном окне
 
 function showDataInConsoleLog(event) {
@@ -11,6 +8,12 @@ function showDataInConsoleLog(event) {
   console.log(data);
   return data;
 }
+
+
+
+// 4. К Форме, которая прикреплена в футере - добавить логику:
+// email должен соответствовать стандартам (добавить валидацию), если он не заполнен - форма не отправляется. Кнопка "Подписаться" и есть "отправкой формы", при нажатии на которую мы будем выводить консоль лог в виде объекта:  { email: 'введенная почта' }
+
 
 const emailForm = document.querySelector("#footer-form");
 
@@ -59,6 +62,8 @@ registerNewUser();
 
 //  Запуск модального окна и валидация данных, присвоение нового свойства с датой последнего входа
 
+let currentUser = undefined;
+
 function modalUserAuthorized(registeredUser) {
   const formModal = document.querySelector(".form__modal");
   const modalFormError = document.querySelectorAll(".modal__form-error");
@@ -84,7 +89,7 @@ function modalUserAuthorized(registeredUser) {
       (registeredUser["user-password"] === authorizedUser["user-password"])
     ) {
       closeModal();
-      let currentUser = { ...registeredUser, lastLogin: new Date() };
+      let currentUser = { ...registeredUser, lastLoginTime: new Date() };
       console.log("Current user info: ", currentUser);
     }
   });
