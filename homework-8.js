@@ -29,7 +29,6 @@ function renderProducts(array) {
 }
 
 
-
 function renderProducts2(products) {
   products.forEach((product) => {
     const ingredientsHTML = product.ingredients

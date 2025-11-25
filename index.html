@@ -1,35 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/index.css" />
-    <script type="module" src="homework-8.js" defer></script>
-  </head>
 
-  <body>
-    <main class="main">
-      <h1 class="title">Выбери свой продукт</h1>
-      <img class="background-image" src="../img/bg-flowers.png" />
-      <div class="cards-wrapper">
-        <div class="card-container"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <script type="module" src="homework-8.js" defer></script>
+  <script type="module" src="homework-9.js" defer></script>
+</head>
+
+<body>
+  <main class="main">
+    <h1 class="title">Выбери свой продукт</h1>
+    <img class="background-image" src="../img/bg-flowers.png" />
+    <div class="cards-wrapper">
+      <div class="card-container"></div>
+    </div>
+
+    <template class="product-template">
+      <div class="product-card">
+        <img class="product-img" src="" alt="продукт для кожи" />
+        <span class="product-category"></span>
+        <h3 class="product-name"></h3>
+        <p class="product-description"></p>
+        <span>Состав:</span>
+        <ul class="product-compound"></ul>
+        <div class="product-price-container">
+          <span class="product-price-label">Цена</span>
+          <span class="product-price">&nbsp;₽</span>
+        </div>
       </div>
+    </template>
+  </main>
 
-      <template class="product-template">
-        <div class="product-card">
-          <img class="product-img" src="" alt="" />
-          <span class="product-category"></span>
-          <h3 class="product-name"></h3>
-          <p class="product-description"></p>
-          <span>Состав:</span>
-          <ul class="product-compound"></ul>
-          <div class="product-price-container">
-            <span class="product-price-label">Цена</span>
-            <span class="product-price">&nbsp;₽</span>
+  <div class="form-wrapper">
+    <form id="register-form">
+      <h2 class="form-register__text">Регистрация нового пользователя</h2>
+      <label for="user-name">Имя</label>
+      <input name="user-name" type="text" placeholder="Введите имя" required />
+      <label for="user-surname">Фамилия</label>
+      <input type="text" placeholder="Введите фамилия" required />
+      <label for="user-email">e-mail адрес</label>
+      <input name="user-email" type="email" placeholder="Введите e-mail" required />
+      <label for="user-year">Год рождения</label>
+      <input name="user-year" type="number" placeholder="Введите год рождения" required />
+      <label for="user-password">Придумайте пароль</label>
+      <input name="user-password" type="password" placeholder="Пароль" required minlength="6" />
+      <label for="user-repeat-password">Повторите пароль</label>
+      <input name="user-repeat-password" type="password" placeholder="Повторите пароль"
+        required minlength="6" />
+      <button class="register-form__button" type="submit">Продолжить</button>
+    </form>
+  </div>
+
+  <div class="modal">
+    <div class="modal__container">
+      <div class="modal__body">
+        <div class="modal__header">Пройдите авторизацию для успешной регистрации</div>
+        <button class="modal__close">&times;</button>
+        <div class="modal__body">
+          <form class="form__modal" action="">
+            <div class="modal__error-container">
+              <label class="form__modal-label" for="user-name">Введите имя пользователя</label>
+              <p class="modal__form-error"></p>
+              <input class="form__modal-input" type="text" name="user-name" placeholder="Имя" required />
+            </div>
+            <div class="modal__error-container">
+              <label class="form__modal-label" for="user-password">Введите пароль</label>
+              <p class="modal__form-error"></p>
+              <input class="form__modal-input" type="password" name="user-password" placeholder="Пароль" required />
+            </div>
+            <button class="modal__button">Войти</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <div class="footer__product-cards">
+        <h2 class="footer__product-cards-title">Product Cards</h2>
+        <p class="footer__product-cards-text">У Нас Самые Лучшие Продукты Для Кожи!</p>
+        <div class="footer__product-cards-icons">
+          <div>
+            <img src="/img/tg-icon.svg" alt="telegram icon" />
+          </div>
+          <div>
+            <img src="/img/vk-icon.svg" alt="vk icon" />
           </div>
         </div>
-      </template>
-    </main>
-  </body>
+      </div>
+      <div class="footer__form">
+        <p class="footer__form-text">Подпишись на наши акции:</p>
+        <div class="footer__form-input">
+          <form id="footer-form">
+            <input type="text" id="footer-input" name="email" placeholder="Введите e-mail..." required />
+            <button type="submit" class="footer__form-input-button">Подписаться</button>
+          </form>
+        </div>
+        <div class="footer__website">
+          <p class="footer__website-text">www.product-cards©all rights reserved</p>
+        </div>
+      </div>
+      <nav class="footer__links">
+        <p class="footer__links-text">Быстрые ссылки</p>
+        <span class="footer__links-options">Главная</span>
+        <span class="footer__links-options">Магазин</span>
+        <span class="footer__links-options">Контакты</span>
+      </nav>
+    </div>
+  </footer>
+</body>
+
 </html>
