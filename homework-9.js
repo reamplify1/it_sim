@@ -78,7 +78,6 @@ function modalUserAuthorized(registeredUser,) {
       modalFormError[1].textContent = "Попробуйте еще раз";
       modalFormError[0].style = "color: red";
       modalFormError[1].style = "color: red";
-      return;
     } else {
       modalFormError[0].textContent = "";
       modalFormError[1].textContent = "";
