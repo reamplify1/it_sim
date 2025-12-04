@@ -9,11 +9,8 @@ function showDataInConsoleLog(event) {
   return data;
 }
 
-
-
 // 4. К Форме, которая прикреплена в футере - добавить логику:
 // email должен соответствовать стандартам (добавить валидацию), если он не заполнен - форма не отправляется. Кнопка "Подписаться" и есть "отправкой формы", при нажатии на которую мы будем выводить консоль лог в виде объекта:  { email: 'введенная почта' }
-
 
 const emailForm = document.querySelector("#footer-form");
 
@@ -23,36 +20,35 @@ emailForm.addEventListener("submit", (e) => {
 
 // 5. Создать форму для регистрации. Она должна содержать поля: имя, фамилия, дата рождения, логин, пароль, повторение пароля. Используйте <label> для того, что бы указать пользователю, какое поле за что отвечает. Также важно использовать placeholder (обо всем этом можно будет почитать в документации в конце поста) Разрешается добавить поля на ваше усмотрение. Все поля должны иметь валидацию. Если пользователь ввел два разных пароля - мы должны предупредить его о том, что регистрация отклонена. Если регистрация успешна - также выводим объект с свойствами и их значениями, как в задании №4. Дополнительно мы должны добавить к этому объекту свойство createdOn и указать туда время создания (используем сущность new Date())
 
+let registeredUser;
+
 function registerNewUser() {
   const registerForm = document.querySelector("#register-form");
   const registerLabels = document.querySelectorAll("#register-form label");
+  const password = document.querySelector("#user-password");
+  const repeatPassword = document.querySelector("#user-repeat-password");
 
   registerForm.addEventListener("submit", (e) => {
     const data = showDataInConsoleLog(e);
     data.createdOn = new Date();
 
-    if (data["user-password"] !== data["user-repeat-password"]) {
+    if (data.userPassword !== data.userRepeatPassword) {
       console.log("Пароли не совпадают");
-      registerLabels[4].textContent = "Пароли не совпадают";
-      registerLabels[4].style.color = "red";
-      registerLabels[5].textContent = "Пароли не совпадают";
-      registerLabels[5].style.color = "red";
+      showInputError(password, "Пароли не совпадают");
+      showInputError(repeatPassword, "Пароли не совпадают");
       return;
     } else {
-      registerLabels[4].style.color = "";
-      registerLabels[5].style.color = "";
-      registerLabels[4].textContent = "Введите пароль";
-      registerLabels[5].textContent = "Повторите пароль";
+      clearInputError(password);
+      clearInputError(repeatPassword);
     }
 
-    openModal(); 
+    registeredUser = data;
 
-    modalUserAuthorized(data);
-
+    openModal();
   });
 }
 
-registerNewUser(); 
+registerNewUser();
 
 // 8. Создать модальное окно, используя классы "modal, modal-showed". Логика такая: при нажатии на кнопку у нас открывается модальное окно путем добавления modal-showed к div с классом modal.
 
@@ -62,38 +58,53 @@ registerNewUser();
 
 //  Запуск модального окна и валидация данных, присвоение нового свойства с датой последнего входа
 
+function showInputError(input, message) {
+  const label = input.previousElementSibling;
+  label.textContent = message;
+  label.style.color = "red";
+}
+
+function clearInputError(input) {
+  const label = input.previousElementSibling;
+  label.style.color = "";
+  label.textContent = label.dataset.default;
+  label.style.borderColor = "";
+}
+
 let currentUser = undefined;
 
-function modalUserAuthorized(registeredUser,) {
+function modalUserAuthorized() {
+  const registerForm = document.querySelector("#register-form");
   const formModal = document.querySelector(".form__modal");
   const modalFormError = document.querySelectorAll(".modal__form-error");
-  
+  const modalUserNameInput = document.querySelector("#form__modal-user-name");
+  const modalPasswordInput = document.querySelector("#form__modal-user-password");
+
   formModal.addEventListener("submit", (e) => {
     const authorizedUser = showDataInConsoleLog(e);
-    if (
-      registeredUser["user-name"] !== authorizedUser["user-name"] ||
-      registeredUser["user-password"] !== authorizedUser["user-password"]
-    ) {
-      modalFormError[0].textContent = "Неверные данные";
-      modalFormError[1].textContent = "Попробуйте еще раз";
-      modalFormError[0].style = "color: red";
-      modalFormError[1].style = "color: red";
-    } else {
-      modalFormError[0].textContent = "";
-      modalFormError[1].textContent = "";
-      modalFormError[0].style.color = "";
-      modalFormError[1].style.color = "";
+
+    const isInvalid = registeredUser.userName !== authorizedUser.userName || registeredUser.userPassword !== authorizedUser.userPassword;
+
+    if (isInvalid) {
+      showInputError(modalUserNameInput, "Неверные данные");
+      showInputError(modalPasswordInput, "Попробуйте еще раз");
+      return;
     }
-    if (
-      (registeredUser["user-name"] === authorizedUser["user-name"]) &&
-      (registeredUser["user-password"] === authorizedUser["user-password"])
-    ) {
-      closeModal();
-      currentUser = { ...registeredUser, lastLoginTime: new Date() };
-      console.log("Current user info: ", currentUser);
-    }
+
+    clearInputError(modalUserNameInput);
+    clearInputError(modalPasswordInput);
+
+    currentUser = { ...registeredUser, lastLoginTime: new Date() };
+    console.log("Current user info: ", currentUser);
+
+    formModal.reset();
+    registerForm.reset();
+
+    closeModal();
   });
 }
+
+modalUserAuthorized();
 
 //Закрытие
 
@@ -117,3 +128,11 @@ function openModal() {
 function closeModal() {
   modal.classList.remove("modal__visible");
 }
+
+const utils = {
+  showDataInConsoleLog,
+  registerNewUser,
+  modalUserAuthorized,
+};
+
+export default utils;

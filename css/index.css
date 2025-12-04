@@ -462,12 +462,6 @@
   padding-bottom: 10px;
 }
 
-.modal__form-error {
-  color: red;
-  font-size: 14px;
-  min-height: 18px;
-  margin-top: 4px;
-}
 
 .modal__button {
   width: 100%;
@@ -483,3 +477,4 @@
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+

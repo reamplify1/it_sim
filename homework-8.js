@@ -148,4 +148,6 @@ function startApp() {
 
 }
 
-startApp();
+// startApp();
+
+export { renderProducts, renderProducts2, renderProducts3, startApp }

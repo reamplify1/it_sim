@@ -10,7 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet" />
-  <script type="module" src="homework-8.js" defer></script>
   <script type="module" src="homework-9.js" defer></script>
 </head>
 
@@ -42,6 +41,7 @@
     <form id="register-form">
       <h2 class="form-register__text">Регистрация нового пользователя</h2>
       <label for="user-name">Имя</label>
+<<<<<<< Updated upstream
       <input name="user-name" type="text" placeholder="Введите имя" required />
       <label for="user-surname">Фамилия</label>
       <input type="text" placeholder="Введите фамилия" required />
@@ -53,6 +53,19 @@
       <input name="user-password" type="password" placeholder="Пароль" required minlength="6" />
       <label for="user-repeat-password">Повторите пароль</label>
       <input name="user-repeat-password" type="password" placeholder="Повторите пароль"
+=======
+      <input id="user-name" name="userName" type="text" placeholder="Введите имя" required />
+      <label for="user-surname">Фамилия</label>
+      <input id="user-surname" name="userSurname" type="text" placeholder="Введите фамилия" required />
+      <label for="user-email">e-mail адрес</label>
+      <input id="user-email" name="userEmail" type="email" placeholder="Введите e-mail" required />
+      <label for="user-year">Год рождения</label>
+      <input id="user-year" name="userYear" type="number" placeholder="Введите год рождения" required />
+      <label for="user-password" data-default="Введите пароль">Придумайте пароль</label>
+      <input id="user-password"  name="userPassword" type="password" placeholder="Пароль" required minlength="6" />
+      <label for="user-repeat-password" data-default="Повторите пароль">Повторите пароль</label>
+      <input id="user-repeat-password" name="userRepeatPassword" type="password" placeholder="Повторите пароль"
+>>>>>>> Stashed changes
         required minlength="6" />
       <button class="register-form__button" type="submit">Продолжить</button>
     </form>
@@ -66,14 +79,12 @@
         <div class="modal__body">
           <form class="form__modal" action="">
             <div class="modal__error-container">
-              <label class="form__modal-label" for="user-name">Введите имя пользователя</label>
-              <p class="modal__form-error"></p>
-              <input class="form__modal-input" type="text" name="user-name" placeholder="Имя" required />
+              <label class="form__modal-label" data-default="Введите имя пользователя" for="user-name">Введите имя пользователя</label>
+              <input id="form__modal-user-name" class="form__modal-input" type="text" name="userName" placeholder="Имя" required />
             </div>
             <div class="modal__error-container">
-              <label class="form__modal-label" for="user-password">Введите пароль</label>
-              <p class="modal__form-error"></p>
-              <input class="form__modal-input" type="password" name="user-password" placeholder="Пароль" required />
+              <label class="form__modal-label" data-default="Введите пароль" for="user-password">Введите пароль</label>
+              <input id="form__modal-user-password" class="form__modal-input" type="password" name="userPassword" placeholder="Пароль" required />
             </div>
             <button class="modal__button">Войти</button>
           </form>
