@@ -79,7 +79,7 @@ function renderProducts3(products) {
     for (let key in productMap) {
       const selector = productMap[key];
       const element = productClone.querySelector(selector);
-      const imgPath = `img/product-cards/${product.img}.png`
+      const imgPath = `img/product-cards/${product.imageName}.png`
 
       if (element) {
         if (key === "imageName") {
@@ -122,25 +122,25 @@ console.log(productsStr2);
 // 7*. Реализовать функцию, которая при старте нашей страницы выводит сообщение с текстом, мол "Сколько карточек отобразить? От 1 до 5" и в зависимости от результата - будет выводить это количество. Должна быть защита от введенных других значений (имеется ввиду проверка if)
 
 function startApp() {
-  let numberOfProducts = prompt("Сколько карточек отобразить? От 1 до 5");
+  let numberOfProducts = prompt("Сколько карточек отобразить? От 1 до 5").trim();
 
   if (numberOfProducts === null) {
     alert("Вы ничего не ввели. Введите нужное число");
-    location.reload();
+    // location.reload();
   }
 
-  numberOfProducts = numberOfProducts.trim();
+  // numberOfProducts = numberOfProducts.trim();
 
   if (numberOfProducts === "") {
     alert("Вы ввели пустоту. Введите нужное число");
-    location.reload();
+    // location.reload();
   } else if (isNaN(numberOfProducts)) {
     alert("Введите число");
-    location.reload();
+    // location.reload();
   } else if (numberOfProducts > products.length || numberOfProducts < 0) {
     alert("Вы ввели неподходящее число");
     document.body.style.display = "none";
-    location.reload();
+    // location.reload();
   }
 
   const productsToRender = products.slice(0, numberOfProducts)
@@ -148,6 +148,6 @@ function startApp() {
 
 }
 
-startApp();
+// вызов функции в main.js startApp();
 
 export { renderProducts, renderProducts2, renderProducts3, startApp }
