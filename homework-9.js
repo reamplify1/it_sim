@@ -1,3 +1,6 @@
+import { Modal, modalAuth } from "./components/modal.js";
+import { Form, registerForm } from "./components/form.js";
+
 // Отдельная функция для отображения в консоль логе пришедших данных после отправки формы. Используется в футере, форме регистрации, а так же в модальном окне
 
 function showDataInConsoleLog(event) {
@@ -20,35 +23,15 @@ emailForm.addEventListener("submit", (e) => {
 
 // 5. Создать форму для регистрации. Она должна содержать поля: имя, фамилия, дата рождения, логин, пароль, повторение пароля. Используйте <label> для того, что бы указать пользователю, какое поле за что отвечает. Также важно использовать placeholder (обо всем этом можно будет почитать в документации в конце поста) Разрешается добавить поля на ваше усмотрение. Все поля должны иметь валидацию. Если пользователь ввел два разных пароля - мы должны предупредить его о том, что регистрация отклонена. Если регистрация успешна - также выводим объект с свойствами и их значениями, как в задании №4. Дополнительно мы должны добавить к этому объекту свойство createdOn и указать туда время создания (используем сущность new Date())
 
-let registeredUser;
+let registeredUser = {};
+let currentUser = undefined;
 
-function registerNewUser() {
-  const registerForm = document.querySelector("#register-form");
-  const registerLabels = document.querySelectorAll("#register-form label");
-  const password = document.querySelector("#user-password");
-  const repeatPassword = document.querySelector("#user-repeat-password");
+const formRegister = new registerForm("register-form", "user-password", "user-repeat-password", registeredUser); // form? - проверить доступ
+const formModal = new modalAuth("modal", "form__modal", currentUser, registeredUser); ///  экземпляр (не забыть добавить параметры)
 
-  registerForm.addEventListener("submit", (e) => {
-    const data = showDataInConsoleLog(e);
-    data.createdOn = new Date();
+const modalUserNameInput = document.querySelector("#form__modal-user-name");
+const modalPasswordInput = document.querySelector("#form__modal-user-password");
 
-    if (data.userPassword !== data.userRepeatPassword) {
-      console.log("Пароли не совпадают");
-      showInputError(password, "Пароли не совпадают");
-      showInputError(repeatPassword, "Пароли не совпадают");
-      return;
-    } else {
-      clearInputError(password);
-      clearInputError(repeatPassword);
-    }
-
-    registeredUser = data;
-
-    openModal();
-  });
-}
-
-registerNewUser();
 
 // 8. Создать модальное окно, используя классы "modal, modal-showed". Логика такая: при нажатии на кнопку у нас открывается модальное окно путем добавления modal-showed к div с классом modal.
 
@@ -58,81 +41,7 @@ registerNewUser();
 
 //  Запуск модального окна и валидация данных, присвоение нового свойства с датой последнего входа
 
-function showInputError(input, message) {
-  const label = input.previousElementSibling;
-  label.textContent = message;
-  label.style.color = "red";
-}
 
-function clearInputError(input) {
-  const label = input.previousElementSibling;
-  label.style.color = "";
-  label.textContent = label.dataset.default;
-  label.style.borderColor = "";
-}
 
-let currentUser = undefined;
 
-function modalUserAuthorized() {
-  const registerForm = document.querySelector("#register-form");
-  const formModal = document.querySelector(".form__modal");
-  const modalFormError = document.querySelectorAll(".modal__form-error");
-  const modalUserNameInput = document.querySelector("#form__modal-user-name");
-  const modalPasswordInput = document.querySelector("#form__modal-user-password");
 
-  formModal.addEventListener("submit", (e) => {
-    const authorizedUser = showDataInConsoleLog(e);
-
-    const isInvalid = registeredUser.userName !== authorizedUser.userName || registeredUser.userPassword !== authorizedUser.userPassword;
-
-    if (isInvalid) {
-      showInputError(modalUserNameInput, "Неверные данные");
-      showInputError(modalPasswordInput, "Попробуйте еще раз");
-      return;
-    }
-
-    clearInputError(modalUserNameInput);
-    clearInputError(modalPasswordInput);
-
-    currentUser = { ...registeredUser, lastLoginTime: new Date() };
-    console.log("Current user info: ", currentUser);
-
-    formModal.reset();
-    registerForm.reset();
-
-    closeModal();
-  });
-}
-
-modalUserAuthorized();
-
-//Закрытие
-
-const modal = document.querySelector(".modal");
-const modalCloseButton = document.querySelector(".modal__close");
-
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    closeModal();
-  }
-});
-
-modalCloseButton.addEventListener("click", (e) => {
-  closeModal();
-});
-
-function openModal() {
-  modal.classList.add("modal__visible");
-}
-
-function closeModal() {
-  modal.classList.remove("modal__visible");
-}
-
-const utils = {
-  showDataInConsoleLog,
-  registerNewUser,
-  modalUserAuthorized,
-};
-
-export default utils;

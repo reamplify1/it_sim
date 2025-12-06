@@ -10,8 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet" />
-  <script type="module" src="homework-8.js" defer></script>
-  <script type="module" src="homework-9.js" defer></script>
+  <script type="module" src="main.js" defer></script>
 </head>
 
 <body>
@@ -58,13 +57,13 @@
     </form>
   </div>
 
-  <div class="modal">
+  <div id="modal" class="modal">
     <div class="modal__container">
       <div class="modal__body">
         <div class="modal__header">Пройдите авторизацию для успешной регистрации</div>
         <button class="modal__close">&times;</button>
         <div class="modal__body">
-          <form class="form__modal" action="">
+          <form id="form__modal" action="">
             <div class="modal__error-container">
               <label class="form__modal-label" data-default="Введите имя пользователя" for="user-name">Введите имя пользователя</label>
               <input id="form__modal-user-name" class="form__modal-input" type="text" name="userName" placeholder="Имя" required />
