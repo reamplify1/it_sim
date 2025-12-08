@@ -427,7 +427,7 @@
   font-size: 22px;
 }
 
-#form__modal {
+#form-modal {
   display: flex;
   flex-direction: column;
   justify-content: center;

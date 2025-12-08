@@ -1,4 +1,4 @@
-export class Rectangle {
+export class Shape {
     constructor(width, height){
         this.width = width
         this.height = height
@@ -8,7 +8,7 @@ export class Rectangle {
     }
 }
 
-export class Square extends Rectangle {
+export class Rectangle extends Shape {
     constructor(width, height){
         super(width, height)
     }

@@ -1,5 +1,5 @@
-import { Modal, modalAuth } from "./components/modal.js";
-import { Form, registerForm } from "./components/form.js";
+import { ModalAuth } from "./components/modalAuth.js";
+import { RegisterForm } from "./components/formRegister.js";
 
 // Отдельная функция для отображения в консоль логе пришедших данных после отправки формы. Используется в футере, форме регистрации, а так же в модальном окне
 
@@ -26,8 +26,8 @@ emailForm.addEventListener("submit", (e) => {
 let registeredUser = {};
 let currentUser = undefined;
 
-const formRegister = new registerForm("register-form", "user-password", "user-repeat-password", registeredUser); // form? - проверить доступ
-const formModal = new modalAuth("modal", "form__modal", currentUser, registeredUser); ///  экземпляр (не забыть добавить параметры)
+const formRegister = new RegisterForm("register-form", "user-password", "user-repeat-password", registeredUser); // form? - проверить доступ
+const formModal = new ModalAuth("modal", "form-modal", currentUser, registeredUser); ///  экземпляр (не забыть добавить параметры)
 
 const modalUserNameInput = document.querySelector("#form__modal-user-name");
 const modalPasswordInput = document.querySelector("#form__modal-user-password");

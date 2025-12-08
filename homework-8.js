@@ -76,7 +76,7 @@ function renderProducts3(products) {
   products.forEach((product) => {
     const productClone = productTemplate.content.cloneNode(true);
 
-    for (let key in productMap) {
+    for (let key of productMap) {
       const selector = productMap[key];
       const element = productClone.querySelector(selector);
       const imgPath = `img/product-cards/${product.imageName}.png`
@@ -126,28 +126,22 @@ function startApp() {
 
   if (numberOfProducts === null) {
     alert("Вы ничего не ввели. Введите нужное число");
-    // location.reload();
   }
 
   // numberOfProducts = numberOfProducts.trim();
 
   if (numberOfProducts === "") {
     alert("Вы ввели пустоту. Введите нужное число");
-    // location.reload();
   } else if (isNaN(numberOfProducts)) {
     alert("Введите число");
-    // location.reload();
   } else if (numberOfProducts > products.length || numberOfProducts < 0) {
     alert("Вы ввели неподходящее число");
     document.body.style.display = "none";
-    // location.reload();
   }
 
   const productsToRender = products.slice(0, numberOfProducts)
   renderProducts(productsToRender);
 
 }
+startApp()
 
-// вызов функции в main.js startApp();
-
-export { renderProducts, renderProducts2, renderProducts3, startApp }
