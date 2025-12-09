@@ -76,7 +76,7 @@ function renderProducts3(products) {
   products.forEach((product) => {
     const productClone = productTemplate.content.cloneNode(true);
 
-    for (let key of productMap) {
+    for (let key in productMap) {  // не понимаю какой про какой метод масива ты говорил? тут же объект
       const selector = productMap[key];
       const element = productClone.querySelector(selector);
       const imgPath = `img/product-cards/${product.imageName}.png`
@@ -127,8 +127,6 @@ function startApp() {
   if (numberOfProducts === null) {
     alert("Вы ничего не ввели. Введите нужное число");
   }
-
-  // numberOfProducts = numberOfProducts.trim();
 
   if (numberOfProducts === "") {
     alert("Вы ввели пустоту. Введите нужное число");

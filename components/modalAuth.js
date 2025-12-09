@@ -2,8 +2,8 @@ import { Modal } from "./modal.js";
 
 
 export class ModalAuth extends Modal {
-  constructor(id, formId, currentUser, registeredUser) {
-    super(id);
+  constructor(id, closeButtonSelector, formId, currentUser, registeredUser) {
+    super(id, closeButtonSelector);
     this.currentUser = currentUser;
     this.registeredUser = registeredUser;
     this.formId = formId;
@@ -11,7 +11,6 @@ export class ModalAuth extends Modal {
     this.modalNameInput = document.querySelector("#form__modal-user-name");
     this.modaPassInput = document.querySelector("#form__modal-user-password");
     this.modal.addEventListener("submit", (e) => this.onSubmit(e));
-    this.initCloseModal(".modal__close")
     this.form = document.querySelector(`#${this.formId}`);
   }
 
@@ -40,6 +39,7 @@ export class ModalAuth extends Modal {
   }
 
   compareNameAndPass() {
+    if (!this.registeredUser) return false;
     const toComparePassRegister = this.registeredUser.userPassword;
     const toComparePassModal = this.getFormData().userPassword;
     const toCompareNameRegister = this.registeredUser.userName;

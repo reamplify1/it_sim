@@ -26,4 +26,10 @@ export class RegisterForm extends Form {
       this.showInputError(this.registerRepeatedPass, "Попробуйте еще раз");
     }
   }
+
+
+  comparePasswords() {
+    const data = this.getFormData();
+    return data.userPassword === data.userRepeatPassword;
+  }
 }

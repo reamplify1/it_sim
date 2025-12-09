@@ -26,11 +26,10 @@ emailForm.addEventListener("submit", (e) => {
 let registeredUser = {};
 let currentUser = undefined;
 
-const formRegister = new RegisterForm("register-form", "user-password", "user-repeat-password", registeredUser); // form? - проверить доступ
-const formModal = new ModalAuth("modal", "form-modal", currentUser, registeredUser); ///  экземпляр (не забыть добавить параметры)
 
-const modalUserNameInput = document.querySelector("#form__modal-user-name");
-const modalPasswordInput = document.querySelector("#form__modal-user-password");
+const formRegister = new RegisterForm("register-form", "user-password", "user-repeat-password", registeredUser); // form? - проверить доступ
+
+const formModal = new ModalAuth("modal", ".modal__close", "form-modal", currentUser, registeredUser); ///  экземпляр (не забыть добавить параметры)
 
 
 // 8. Создать модальное окно, используя классы "modal, modal-showed". Логика такая: при нажатии на кнопку у нас открывается модальное окно путем добавления modal-showed к div с классом modal.

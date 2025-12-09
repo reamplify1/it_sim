@@ -18,11 +18,6 @@ export class Form {
     return Object.fromEntries(formData.entries());
   }
 
-  comparePasswords() {
-    const data = this.getFormData();
-    return data.userPassword === data.userRepeatPassword;
-  }
-
   reset() {
     this.form.reset();
   }

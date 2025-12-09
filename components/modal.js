@@ -5,8 +5,10 @@
 // Используя данный класс - переписать логику задания №9, связанной с модальными окнами.
 
 export class Modal {
-  constructor(id) {
+  constructor(id, closeButtonSelector) {
     this.modal = document.querySelector(`#${id}`);
+    this.closeButton = this.modal.querySelector(`${closeButtonSelector}`)
+    this.initCloseModal()
   }
 
   openModal() {
@@ -34,16 +36,14 @@ export class Modal {
     label.style.borderColor = "";
   }
 
-  initCloseModal(button) {
-    const modalCloseButton = document.querySelector(`${button}`);
-    
+  initCloseModal() {
     this.modal.addEventListener("click", (e) => {
       if (e.target === this.modal) {
         this.closeModal();
       }
     });
 
-    modalCloseButton.addEventListener("click", (e) => {
+    this.closeButton.addEventListener("click", (e) => {
       this.closeModal();
     });
   }
