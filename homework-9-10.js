@@ -1,5 +1,5 @@
-import { ModalAuth } from "./components/modalAuth.js";
-import { RegisterForm } from "./components/formRegister.js";
+import { ModalAuth } from "./components/ModalAuth.js";
+import { RegisterForm } from "./components/FormRegister.js";
 
 // Отдельная функция для отображения в консоль логе пришедших данных после отправки формы. Используется в футере, форме регистрации, а так же в модальном окне
 
@@ -27,9 +27,10 @@ let registeredUser = {};
 let currentUser = undefined;
 
 
-const formRegister = new RegisterForm("register-form", "user-password", "user-repeat-password", registeredUser); // form? - проверить доступ
+const formModal = new ModalAuth("modal", ".modal__close", "form-modal", currentUser, registeredUser); 
 
-const formModal = new ModalAuth("modal", ".modal__close", "form-modal", currentUser, registeredUser); ///  экземпляр (не забыть добавить параметры)
+const formRegister = new RegisterForm("register-form", "user-password", "user-repeat-password", registeredUser, formModal); 
+
 
 
 // 8. Создать модальное окно, используя классы "modal, modal-showed". Логика такая: при нажатии на кнопку у нас открывается модальное окно путем добавления modal-showed к div с классом modal.

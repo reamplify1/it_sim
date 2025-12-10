@@ -1,12 +1,14 @@
-import { Form } from "./form.js";
+import { Form } from "./Form.js";
 
 export class RegisterForm extends Form {
-  constructor(formId, passwordId, repeatPasswordId, registeredUser) {
+  constructor(formId, passwordId, repeatPasswordId, registeredUser, modal) {
     super(formId, passwordId, repeatPasswordId);
     this.registeredUser = registeredUser;
 
     this.registerPass = document.querySelector("#user-password");
     this.registerRepeatedPass = document.querySelector("#user-repeat-password");
+
+    this.modal = modal;
   }
   onSubmit(e) {
     e.preventDefault();
@@ -16,7 +18,7 @@ export class RegisterForm extends Form {
 
       console.log("зарегистрированный пользователь", this.registeredUser);
 
-      this.modalWindow = document.querySelector("#modal").classList.add("modal__visible");
+      this.modal.openModal();
 
       this.clearInputError(this.registerPass);
       this.clearInputError(this.registerRepeatedPass);

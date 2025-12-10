@@ -6,10 +6,8 @@
 // Используя данный класс - переписать логику задания №9, связанной с формами.
 
 export class Form {
-  constructor(formId, passwordId, repeatPasswordId) {
+  constructor(formId) {
     this.form = document.querySelector(`#${formId}`);
-    this.passwordInput = this.form.querySelector(`#${passwordId}`);
-    this.repeatPasswordInput = this.form.querySelector(`#${repeatPasswordId}`);
     this.form.addEventListener("submit", (e) => this.onSubmit(e));
   }
 

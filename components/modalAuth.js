@@ -1,4 +1,4 @@
-import { Modal } from "./modal.js";
+import { Modal } from "./Modal.js";
 
 
 export class ModalAuth extends Modal {

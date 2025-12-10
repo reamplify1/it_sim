@@ -19,7 +19,7 @@ export class Modal {
     this.modal.classList.remove("modal__visible");
   }
 
-  modalIsOpen() {
+  isOpen() {
     this.modal.classList.contains("modal__visible");
   }
 
