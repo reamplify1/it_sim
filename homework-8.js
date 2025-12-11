@@ -5,10 +5,8 @@ import { products } from "./data/product-cards.js";
 const cardContainer = document.querySelector(".card-container");
 const productTemplate = document.querySelector(".product-template");
 
-
 function renderProducts(array) {
   array.forEach((product) => {
-    
     const productClone = productTemplate.content.cloneNode(true);
     productClone.querySelector(".product-img").src = `img/product-cards/${product.imageName}.png`;
     productClone.querySelector(".product-category").textContent = product.category;
@@ -28,7 +26,6 @@ function renderProducts(array) {
   });
 }
 
-
 function renderProducts2(products) {
   products.forEach((product) => {
     const ingredientsHTML = product.ingredients
@@ -37,7 +34,7 @@ function renderProducts2(products) {
       })
       .join("");
 
-    const imgPath = `img/product-cards/${product.imageName}.png`
+    const imgPath = `img/product-cards/${product.imageName}.png`;
 
     const cardHTML = `
     <div class="product-card">
@@ -59,7 +56,7 @@ function renderProducts2(products) {
 
     cardContainer.insertAdjacentHTML("beforeend", cardHTML);
   });
-};
+}
 
 // 4*. Подумать, как можно оптимизировать дублирование querySelector, textContent и прочего, о чем говорилось на лекции. 1 вариант - маппинг, 2 вариант - использование data-атрибутов - хз
 
@@ -77,9 +74,10 @@ function renderProducts3(products) {
     const productClone = productTemplate.content.cloneNode(true);
 
     for (let key in productMap) {
+      // не понимаю какой про какой метод масива ты говорил? тут же объект
       const selector = productMap[key];
       const element = productClone.querySelector(selector);
-      const imgPath = `img/product-cards/${product.img}.png`
+      const imgPath = `img/product-cards/${product.imageName}.png`;
 
       if (element) {
         if (key === "imageName") {
@@ -127,9 +125,9 @@ function startApp() {
   if (numberOfProducts === null) {
     alert("Вы ничего не ввели. Введите нужное число");
     location.reload();
+  } else {
+    numberOfProducts = numberOfProducts.trim();
   }
-
-  numberOfProducts = numberOfProducts.trim();
 
   if (numberOfProducts === "") {
     alert("Вы ввели пустоту. Введите нужное число");
@@ -143,11 +141,7 @@ function startApp() {
     location.reload();
   }
 
-  const productsToRender = products.slice(0, numberOfProducts)
+  const productsToRender = products.slice(0, numberOfProducts);
   renderProducts(productsToRender);
-
 }
-
 startApp();
-
-export { renderProducts, renderProducts2, renderProducts3, startApp }

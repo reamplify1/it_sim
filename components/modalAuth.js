@@ -1,0 +1,52 @@
+import { Modal } from "./Modal.js";
+
+
+export class ModalAuth extends Modal {
+  constructor(id, closeButtonSelector, formId, currentUser, registeredUser) {
+    super(id, closeButtonSelector);
+    this.currentUser = currentUser;
+    this.registeredUser = registeredUser;
+    this.formId = formId;
+    this.registerFormElement = document.querySelector("#register-form");
+    this.modalNameInput = document.querySelector("#form__modal-user-name");
+    this.modaPassInput = document.querySelector("#form__modal-user-password");
+    this.modal.addEventListener("submit", (e) => this.onSubmit(e));
+    this.form = document.querySelector(`#${this.formId}`);
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const data = this.getFormData();
+    const validation = this.compareNameAndPass();
+    if (validation) {
+      this.currentUser = { ...this.registeredUser, lastLoginTime: new Date() };
+      console.log("Current user info: ", this.currentUser);
+
+      this.form.reset();
+      this.registerFormElement.reset();
+      this.clearInputError(this.modalNameInput);
+      this.clearInputError(this.modaPassInput);
+      this.closeModal();
+    } else {
+      this.showInputError(this.modalNameInput, "Неверные данные");
+      this.showInputError(this.modaPassInput, "Попробуйте еще раз");
+    }
+  }
+
+  getFormData() {
+    const formData = new FormData(this.form);
+    return Object.fromEntries(formData.entries());
+  }
+
+  compareNameAndPass() {
+    if (!this.registeredUser) return false;
+    const toComparePassRegister = this.registeredUser.userPassword;
+    const toComparePassModal = this.getFormData().userPassword;
+    const toCompareNameRegister = this.registeredUser.userName;
+    const toCompareNameModal = this.getFormData().userName;
+
+    const isMatchPasswords = toComparePassRegister === toComparePassModal && toCompareNameModal === toCompareNameRegister;
+
+    return isMatchPasswords;
+  }
+}
