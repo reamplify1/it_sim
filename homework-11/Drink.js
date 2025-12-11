@@ -26,8 +26,8 @@ export class Drink {
 
   changeTemperature(value) {
     // public setter
-    console.log(`Температура изменена на ${value}`);
     this.#setDrinkTemperature(value);
+    console.log(`Температура ${this.name} изменена на ${value}`);
   }
 
   getDrinkInfo() {
@@ -38,7 +38,5 @@ export class Drink {
     this.#makeDrink();
   }
 
-  bringDrink() {
-    return `Получите напиток: ${this.name}`;
-  }
+
 }

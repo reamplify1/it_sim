@@ -10,7 +10,6 @@ const coffee = new Coffee('Каппучино', "0.3", "3$", "80градусов
 const lemonade = new Lemonade("лимонад", "1л", "1.5$", "-2 градуса", "1 долька лимона", "5г сахара")
 
 console.log(cafe.getCafeInfo());
-cafe.orderDrink(tea)
 tea.changeTemperature('85 градусов');
-coffee.getDrinkInfo()
+cafe.orderDrink(tea)
 cafe.orderDrink(lemonade)
