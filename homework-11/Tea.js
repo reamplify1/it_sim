@@ -19,10 +19,6 @@ export class Tea extends Drink {
     console.log(`Добавляем ${this.teaLeaves}, добавляем воду с температурой ${this.getDrinkTemperature()}, подаем ${this.name}`);
   }
 
-  #setDrinkTemperature(val) {
-    this.getDrinkTemperature = val;
-  }
-
   make() {
     this.#makeDrink();
   }
@@ -33,7 +29,4 @@ export class Tea extends Drink {
     );
   }
 
-  bringDrink() {
-    return `Получите напиток: ${this.name}`;
-  }
 }

@@ -20,7 +20,14 @@ export class Drink {
   }
 
   #setDrinkTemperature(val) {
+    //нельзя вызвать приватный метод извне
     this.#temperature = val;
+  }
+
+  changeTemperature(value) {
+    // public setter
+    console.log(`Температура изменена на ${value}`);
+    this.#setDrinkTemperature(value);
   }
 
   getDrinkInfo() {
@@ -29,5 +36,9 @@ export class Drink {
 
   make() {
     this.#makeDrink();
+  }
+
+  bringDrink() {
+    return `Получите напиток: ${this.name}`;
   }
 }
