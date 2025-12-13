@@ -12,7 +12,7 @@ export class Drink {
   }
 
   #makeDrink() {
-    console.log(`{Добавляем ингридиенты, нагреваем воду до ${this.#temperature}, подаем ${this.name}`);
+    console.log(`{Добавляем ингридиенты, нагреваем воду до ${this.temperature}, подаем ${this.name}`);
   }
   getDrinkTemperature() {
     return this.#temperature;
