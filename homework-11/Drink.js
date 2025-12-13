@@ -12,31 +12,29 @@ export class Drink {
   }
 
   #makeDrink() {
-    console.log(`{Добавляем ингридиенты, нагреваем воду до ${this.getDrinkTemperature()}, подаем ${this.name}`);
+    console.log(`{Добавляем ингридиенты, нагреваем воду до ${this.#temperature}, подаем ${this.name}`);
   }
-
   getDrinkTemperature() {
     return this.#temperature;
   }
 
-  #setDrinkTemperature(val) {
-    //нельзя вызвать приватный метод извне
-    this.#temperature = val;
+  get temperature() {
+    return this.#temperature;
   }
 
-  changeTemperature(value) {
-    // public setter
-    this.#setDrinkTemperature(value);
-    console.log(`Температура ${this.name} изменена на ${value}`);
+  set temperature(val) {
+    if(typeof val !== 'number'){
+      throw new Error('Ошибочка с температурой')
+    }
+    this.#temperature = val;
+    console.log(`Температура ${this.name} изменена на ${val}`);
   }
 
   getDrinkInfo() {
-    console.log(`name: ${this.name}, size:${this.size}, price: ${this.price}, temperature: ${this.getDrinkTemperature()}`);
+    console.log(`name: ${this.name}, size:${this.size}, price: ${this.price}, temperature: ${this.temperature}`);
   }
 
   make() {
     this.#makeDrink();
   }
-
-
 }

@@ -16,7 +16,7 @@ export class Tea extends Drink {
   }
 
   #makeDrink() {
-    console.log(`Добавляем ${this.teaLeaves}, добавляем воду с температурой ${this.getDrinkTemperature()}, подаем ${this.name}`);
+    console.log(`Добавляем ${this.teaLeaves}, добавляем воду с температурой ${this.temperature}, подаем ${this.name}`);
   }
 
   make() {
@@ -25,7 +25,7 @@ export class Tea extends Drink {
 
   getDrinkInfo() {
     console.log(
-      `name: ${this.name}, size:${this.size}, price: ${this.price}, temperature: ${this.getDrinkTemperature()}, tea: ${this.teaLeaves}`
+      `name: ${this.name}, size:${this.size}, price: ${this.price}, temperature: ${this.temperature}, tea: ${this.teaLeaves}`
     );
   }
 
