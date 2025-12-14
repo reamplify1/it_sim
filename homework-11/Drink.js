@@ -20,7 +20,7 @@ export class Drink {
   }
 
   set temperature(val) {
-    if(typeof val !== 'number'){
+    if (typeof val !== 'number') {
       throw new Error('Ошибочка с температурой')
     }
     this.#temperature = val;

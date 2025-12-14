@@ -6,6 +6,7 @@ export class Lemonade extends Drink {
     this.lemon = lemon;
     this.sugar = sugar;
   }
+
   #makeDrink() {
     console.log(`Вода при температуре ${this.temperature} смешивается с ${this.lemon} и ${this.sugar}`);
   }
@@ -13,7 +14,8 @@ export class Lemonade extends Drink {
   getDrinkInfo() {
     return `name: ${this.name}, size:${this.size}, price: ${this.price}, temperature: ${this.temperature}, sugar: ${this.sugar}`;
   }
-  make() {
+
+  make(){
     this.#makeDrink();
   }
 }

@@ -24,9 +24,7 @@ export class Tea extends Drink {
   }
 
   getDrinkInfo() {
-    console.log(
-      `name: ${this.name}, size:${this.size}, price: ${this.price}, temperature: ${this.temperature}, tea: ${this.teaLeaves}`
-    );
+    console.log(`name: ${this.name}, size:${this.size}, price: ${this.price}, temperature: ${this.temperature}, tea: ${this.teaLeaves}`);
   }
 
 }

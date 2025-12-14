@@ -22,6 +22,7 @@ export class Coffee extends Drink {
       }, coffee beans: ${this.coffeeBeans}`
     );
   }
+  
   make() {
     this.#makeDrink();
   }
