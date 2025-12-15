@@ -15,7 +15,7 @@ export class Lemonade extends Drink {
     return `name: ${this.name}, size:${this.size}, price: ${this.price}, temperature: ${this.temperature}, sugar: ${this.sugar}`;
   }
 
-  make(){
+  make() {
     this.#makeDrink();
   }
 }
