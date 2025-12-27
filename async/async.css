@@ -1,0 +1,11 @@
+.loading-text {
+    display: none;
+}
+
+.text__visible {
+    display: block;
+}
+
+/* .loading-text.text__visible {
+  display: block; 
+} */
