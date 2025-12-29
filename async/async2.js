@@ -1,3 +1,6 @@
+// import users from './users.json';
+
+// // import users from './users.json' assert { type: "json" };
 // 2. Реализовать данную концепцию:
 
 //   При переходе на async.html мы отображаем по центру страницы строку: "Данные загружаются". Это в том случае, если локальное хранилище не заполнено данными и мы еще не сделали запрос.
@@ -15,42 +18,49 @@
 // Данные не загрузились — отображаем ошибку
 // Данные загрузились или меняются — отображаем и синхронизируем с локальным хранилищем
 
-async function getUsers() {
-  isLoaded(".loading-text");
 
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+function saveUsers() {
+  const savedUsers = localStorage.getItem("users");
+  const loadingText = document.querySelector(".loading-text");
 
-  try {
-    const response = await fetch("users.json");
-
-    if (!response.ok) {
-      throw new Error("Ошибка запроса");
-    }
-
-    const users = await response.json();
-    console.log(users);
-    return users;
-  } catch {
-    throw new Error("ошибка загрузки пользователей, данные не получены");
+  if (savedUsers) {
+    loadingText.classList.remove("text__visible");
+    return Promise.resolve(JSON.parse(savedUsers));
+  } else {
+    loadingText.classList.add("text__visible");
   }
+
+  return fetch("users.json")
+    .then((response) => response.json())
+    .then((json) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          localStorage.setItem("users", JSON.stringify(json));
+          loadingText.classList.remove("text__visible");
+          resolve(json);
+        }, 2000);
+      });
+    })
+    .catch((err) => {
+      console.error("Ошибка при загрузке данных:", err);
+      loadingText.textContent = "Ошибка при загрузке данных";
+    });
 }
 
-let usersArr = await getUsers();
 
+saveUsers().then((users) => {
+  renderUsers(users);
+  console.log(users);
+});
 
-function loadUsers(arr) {
-  localStorage.setItem("users", JSON.stringify(arr));
+function renderUsers(users) {
 
-  renderUsers(arr);
-}
-
-function renderUsers(arr) {
   const userContainer = document.querySelector(".user-container");
   const userTemplate = document.querySelector(".user-template");
 
   userContainer.innerHTML = "";
 
-  arr.forEach((user) => {
+  users.forEach((user) => {
     const userClone = userTemplate.content.cloneNode(true);
     userClone.querySelector(".user-name").textContent = user.name;
     userClone.querySelector(".user-email").textContent = user.email;
@@ -59,64 +69,49 @@ function renderUsers(arr) {
     const deleteBtn = userClone.querySelector(".delete-user__button");
 
     deleteBtn.dataset.userId = user.id;
-
     deleteBtn.addEventListener("click", () => {
       deleteUser(user.id);
     });
-
     userContainer.appendChild(userClone);
-    isLoaded(".loading-text");
   });
 }
 
-function deleteUser(id) {
-  const usersInStorage = localStorage.getItem("users");
-  const parsedUsers = JSON.parse(usersInStorage);
+function deleteUser(userId) {
+  const users = JSON.parse(localStorage.getItem("users"));
 
-  const filteredUsers = parsedUsers.filter((user) => user.id != id);
+  const filteredUsers = users.filter((user) => user.id !== userId);
 
   localStorage.setItem("users", JSON.stringify(filteredUsers));
 
-  if (filteredUsers.length === 0) {
-    localStorage.removeItem("users");
+  renderUsers(filteredUsers);
 }
 
-renderUsers(filteredUsers);
-isLoaded(".loading-text");
+function refreshUsers() {
+  const refreshButton = document.querySelector(".refresh-users");
+
+  refreshButton.addEventListener("click", () => {
+    fetch("users.json")
+      .then((res) => res.json())
+      .then((users) => {
+        localStorage.setItem("users", JSON.stringify(users));
+        renderUsers(users);
+      })
+      .catch(() => {
+        throw new Error("Ошибка при загрузке данных");
+      });
+  });
 }
+
+refreshUsers();
 
 function deleteAllUsers() {
-  const deleteAllBtn = document.querySelector(".delete-users");
+  const userContainer = document.querySelector(".user-container");
+  const deleteAllUsersBtn = document.querySelector(".delete-users");
 
-  deleteAllBtn.addEventListener("click", () => {
+  deleteAllUsersBtn.addEventListener("click", () => {
     localStorage.clear();
-    renderUsers([]);
-    isLoaded(".loading-text");
+    userContainer.innerHTML = "";
   });
 }
 
-function refreshUsers(arr) {
-  const buttonRefresh = document.querySelector(".refresh-users");
-
-  buttonRefresh.addEventListener("click", () => {
-    deleteAllUsers();
-    renderUsers(arr);
-    loadUsers(arr);
-    isLoaded(".loading-text");
-  });
-}
-
-function isLoaded(className) {
-  const text = document.querySelector(className);
-  if (!text) return;
-
-  if (localStorage.length === 0) {
-    text.classList.add("text__visible");
-  } else {
-    text.classList.remove("text__visible");
-  }
-}
-
-loadUsers(usersArr);
 deleteAllUsers();
-refreshUsers(usersArr);
