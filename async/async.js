@@ -22,7 +22,7 @@ async function getUsers() {
     return JSON.parse(storedUsers);
   }
 
-  isLoaded(".container__loading-text");
+  showText(".container__loading-text");
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
@@ -71,7 +71,7 @@ function renderUsers(arr) {
 
     userContainer.appendChild(userClone);
   });
-  isLoaded(".container__loading-text");
+  showText(".container__loading-text");
 }
 
 function deleteUser(id) {
@@ -87,16 +87,17 @@ function deleteUser(id) {
   }
 
   renderUsers(filteredUsers);
-  isLoaded(".container__loading-text");
+  showText(".container__loading-text");
 }
 
 function deleteAllUsers() {
   const deleteAllBtn = document.querySelector(".container__delete-btn");
+  const LOCAL_STORAGE_KEY_USERS = "users"
 
   deleteAllBtn.addEventListener("click", () => {
-    localStorage.clear();
+    localStorage.removeItem(LOCAL_STORAGE_KEY_USERS)
     renderUsers([]);
-    isLoaded(".container__loading-text");
+    showText(".container__loading-text");
   });
 }
 
@@ -106,11 +107,11 @@ function refreshUsers(arr) {
   buttonRefresh.addEventListener("click", () => {
     renderUsers(arr);
     loadUsers(arr);
-    isLoaded(".container__loading-text");
+    showText(".container__loading-text");
   });
 }
 
-function isLoaded(className) {
+function showText(className) {
   const text = document.querySelector(className);
   if (!text) return;
 
