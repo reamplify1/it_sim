@@ -16,7 +16,13 @@
 // Данные загрузились или меняются — отображаем и синхронизируем с локальным хранилищем
 
 async function getUsers() {
-  isLoaded(".loading-text");
+  const storedUsers = localStorage.getItem("users");
+
+  if (storedUsers) {
+    return JSON.parse(storedUsers);
+  }
+
+  isLoaded(".container__loading-text");
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
@@ -37,7 +43,6 @@ async function getUsers() {
 
 let usersArr = await getUsers();
 
-
 function loadUsers(arr) {
   localStorage.setItem("users", JSON.stringify(arr));
 
@@ -45,7 +50,7 @@ function loadUsers(arr) {
 }
 
 function renderUsers(arr) {
-  const userContainer = document.querySelector(".user-container");
+  const userContainer = document.querySelector(".container__user-list");
   const userTemplate = document.querySelector(".user-template");
 
   userContainer.innerHTML = "";
@@ -65,8 +70,8 @@ function renderUsers(arr) {
     });
 
     userContainer.appendChild(userClone);
-    isLoaded(".loading-text");
   });
+  isLoaded(".container__loading-text");
 }
 
 function deleteUser(id) {
@@ -79,30 +84,29 @@ function deleteUser(id) {
 
   if (filteredUsers.length === 0) {
     localStorage.removeItem("users");
-}
+  }
 
-renderUsers(filteredUsers);
-isLoaded(".loading-text");
+  renderUsers(filteredUsers);
+  isLoaded(".container__loading-text");
 }
 
 function deleteAllUsers() {
-  const deleteAllBtn = document.querySelector(".delete-users");
+  const deleteAllBtn = document.querySelector(".container__delete-btn");
 
   deleteAllBtn.addEventListener("click", () => {
     localStorage.clear();
     renderUsers([]);
-    isLoaded(".loading-text");
+    isLoaded(".container__loading-text");
   });
 }
 
 function refreshUsers(arr) {
-  const buttonRefresh = document.querySelector(".refresh-users");
+  const buttonRefresh = document.querySelector(".container__refresh-btn");
 
   buttonRefresh.addEventListener("click", () => {
-    deleteAllUsers();
     renderUsers(arr);
     loadUsers(arr);
-    isLoaded(".loading-text");
+    isLoaded(".container__loading-text");
   });
 }
 

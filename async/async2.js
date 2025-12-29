@@ -21,7 +21,7 @@
 
 function saveUsers() {
   const savedUsers = localStorage.getItem("users");
-  const loadingText = document.querySelector(".loading-text");
+  const loadingText = document.querySelector(".container__loading-text");
 
   if (savedUsers) {
     loadingText.classList.remove("text__visible");
@@ -55,7 +55,7 @@ saveUsers().then((users) => {
 
 function renderUsers(users) {
 
-  const userContainer = document.querySelector(".user-container");
+  const userContainer = document.querySelector(".container__user-list");
   const userTemplate = document.querySelector(".user-template");
 
   userContainer.innerHTML = "";
@@ -87,7 +87,7 @@ function deleteUser(userId) {
 }
 
 function refreshUsers() {
-  const refreshButton = document.querySelector(".refresh-users");
+  const refreshButton = document.querySelector(".container__refresh-btn");
 
   refreshButton.addEventListener("click", () => {
     fetch("users.json")
@@ -105,8 +105,8 @@ function refreshUsers() {
 refreshUsers();
 
 function deleteAllUsers() {
-  const userContainer = document.querySelector(".user-container");
-  const deleteAllUsersBtn = document.querySelector(".delete-users");
+  const userContainer = document.querySelector(".container__user-list");
+  const deleteAllUsersBtn = document.querySelector(".container__delete-btn");
 
   deleteAllUsersBtn.addEventListener("click", () => {
     localStorage.clear();
