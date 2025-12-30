@@ -22,7 +22,7 @@ async function getUsers() {
     return JSON.parse(storedUsers);
   }
 
-  showText(".container__loading-text");
+  setLoadingMessageVisible(".container__loading-text", true);
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
@@ -38,6 +38,8 @@ async function getUsers() {
     return users;
   } catch {
     throw new Error("ошибка загрузки пользователей, данные не получены");
+  } finally {
+    setLoadingMessageVisible(".container__loading-text", false);
   }
 }
 
@@ -71,7 +73,6 @@ function renderUsers(arr) {
 
     userContainer.appendChild(userClone);
   });
-  showText(".container__loading-text");
 }
 
 function deleteUser(id) {
@@ -87,17 +88,15 @@ function deleteUser(id) {
   }
 
   renderUsers(filteredUsers);
-  showText(".container__loading-text");
 }
 
 function deleteAllUsers() {
   const deleteAllBtn = document.querySelector(".container__delete-btn");
-  const LOCAL_STORAGE_KEY_USERS = "users"
+  const USERS_KEY = "users";
 
   deleteAllBtn.addEventListener("click", () => {
-    localStorage.removeItem(LOCAL_STORAGE_KEY_USERS)
+    localStorage.removeItem(USERS_KEY);
     renderUsers([]);
-    showText(".container__loading-text");
   });
 }
 
@@ -107,19 +106,14 @@ function refreshUsers(arr) {
   buttonRefresh.addEventListener("click", () => {
     renderUsers(arr);
     loadUsers(arr);
-    showText(".container__loading-text");
   });
 }
 
-function showText(className) {
+function setLoadingMessageVisible(className, isVisible) {
   const text = document.querySelector(className);
   if (!text) return;
 
-  if (localStorage.length === 0) {
-    text.classList.add("text__visible");
-  } else {
-    text.classList.remove("text__visible");
-  }
+  text.classList.toggle("text__visible", isVisible);
 }
 
 loadUsers(usersArr);
