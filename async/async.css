@@ -1,0 +1,14 @@
+.container__loading-text {
+    display: none;
+}
+
+.text__visible {
+    display: block;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
