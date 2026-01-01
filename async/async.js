@@ -22,7 +22,7 @@ async function getUsers() {
     return JSON.parse(storedUsers);
   }
 
-  setLoadingMessageVisible(".container__loading-text", true);
+  setLoadingMessage(".container__loading-text", true);
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
@@ -39,7 +39,7 @@ async function getUsers() {
   } catch {
     throw new Error("ошибка загрузки пользователей, данные не получены");
   } finally {
-    setLoadingMessageVisible(".container__loading-text", false);
+    setLoadingMessage(".container__loading-text", false);
   }
 }
 
@@ -109,7 +109,7 @@ function refreshUsers(arr) {
   });
 }
 
-function setLoadingMessageVisible(className, isVisible) {
+function setLoadingMessage(className, isVisible) {
   const text = document.querySelector(className);
   if (!text) return;
 
